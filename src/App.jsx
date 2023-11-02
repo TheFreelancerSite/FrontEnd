@@ -1,4 +1,3 @@
-
 import './App.scss'
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import AddService from './components/AddService/AddService'
@@ -6,7 +5,9 @@ import Navbar from './components/Navbar/Navbar'
 import Footer from './components/footer/Footer'
 import Orders from './components/orders/Orders'
 import Servicess from './components/Servicess/Servicess'
-import Signin from './components/Signin/Signin'
+import Signup from './pages/Signup/signup'
+import Signin from './pages/Signin/Signin'
+import Home from './pages/home/Home'
 
 
 
@@ -25,10 +26,10 @@ function App() {
       path: "/",
       element: <Layout />,
       children: [
-        // {
-        //   path: "/",
-        //   element: <Home />,
-        // },
+        {
+          path: "/",
+          element: <Home />,
+        },
         {
           path: "/servicess",
           element: <Servicess />,
