@@ -5,10 +5,11 @@
     .container {
       width: 1400px;
       padding: 50px 0px;
+      max-width: 1400px;
   
       h1 {
         width: max-content;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
         color: gray;
         font-weight: 300;
       }
@@ -17,6 +18,7 @@
         display: flex;
         justify-content: space-between;
         gap: 100px;
+        flex-wrap: wrap;
   
         label {
           color: gray;
@@ -29,12 +31,14 @@
           display: flex;
           flex-direction: column;
           gap: 10px;
-          justify-content: space-between;
+          width: 100%; 
+          // justify-content: space-between;
   
           input,
           select,
           textarea {
-            padding: 20px;
+            width: 100%;
+            padding:10px;
           }
   
           button {
@@ -43,11 +47,19 @@
             color: white;
             font-weight: 500;
             font-size: 18px;
-            background-color: #1dbf73;
+            background-color: #0d084d;
             cursor: pointer;
           }
         }
       }
     }
   }
+  @media (max-width: 768px) {
+    .add .container {
+      padding: 10px;
+    }
   
+    .add .container .sections {
+      flex-direction: column; 
+    }
+  }
