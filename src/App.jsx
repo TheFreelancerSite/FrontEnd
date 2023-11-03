@@ -31,10 +31,10 @@ function App() {
         //   path: "/",
         //   element: <Home />,
         // },
-        {
-          path: "/servicess",
-          element: <Servicess />,
-        },
+        // {
+        //   path: "/servicess",
+        //   element: <Servicess />,
+        // },
         {
           path: "/myServices",
           element: <MyServices />,
