@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "axios": "^1.6.0",
     "bootstrap": "^5.3.2",
+    "infinite-react-carousel": "^1.2.11",
     "mdb-ui-kit": "^6.4.2",
     "react": "^18.2.0",
-    "infinite-react-carousel": "^1.2.11",
+    "react-axios": "^2.0.6",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "sass": "^1.58.0"

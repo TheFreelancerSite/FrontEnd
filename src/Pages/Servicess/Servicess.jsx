@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import "./Servicess.scss";
-// import { gigs } from "../../data";
-// import GigCard from "../../components/gigCard/GigCard";
+import { data } from "../../../data.json";
+import ServiceCard from "../../components/ServiceCard/ServiceCard"; 
 
-function Services() {
+function Servicess() {
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
   const minRef = useRef();
@@ -53,8 +53,8 @@ function Services() {
           </div>
         </div>
         <div className="cards">
-          {gigs.map((gig) => (
-            <GigCard key={gig.id} item={gig} />
+          {data.map((gig) => (
+            <ServiceCard key={gig.id} item={gig} />
           ))}
         </div>
       </div>
@@ -62,4 +62,4 @@ function Services() {
   );
 }
 
-export default Services;
+export default Servicess;
