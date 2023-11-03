@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import axios from "react-axios"
 import "./Navbar.scss";
 
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
 
-  //   const { pathname } = useLocation();
+//   const { pathname } = useLocation();
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -23,10 +22,12 @@ function Navbar() {
   // const currentUser = null
 
   const currentUser = {
-    id: 1,
-    username: "hichem sboui",
-    isFreelencer: true,
+    // id: localStorage.getItem("id"),
+    username : localStorage.getItem("username"),
+    isSeller:localStorage.getItem("role") ,
+    img:localStorage.getItem("imgUrl") ,
   };
+  console.log(currentUser);
 
   return (
     <div className={active == "/" ? "navbar active" : "navbar"}>
@@ -37,61 +38,64 @@ function Navbar() {
           </Link>
           <span className="dot">.</span>
         </div>
-        <div className="links">
-
-
-          <Link className="link" to="/add">
-            <a>Add Service</a>
-          </Link>
-          <Link  lassName="link" to="/MyServices">
-            <a>My Services</a>
-          </Link>
-          <Link className="link" to="/orders">
-            <a>Orders</a>
-          </Link>
-          {!currentUser?.isFreelencer && <span>Become a Freelencer</span>}
-          {currentUser.isFreelencer ? (
-            <div className="user" onClick={() => setOpen(!open)}>
+        <div className="links"> 
+          <span>Freelanci Business</span>
+          <span>Explore</span>
+          {/* <span>English</span> */}
+          {/* {!currentUser?.isSeller && <span>Become a Freelencer</span>} */}
+          {currentUser.isSeller ? (
+            <div className="user" onClick={()=>setOpen(!open)}>
               <img
-                src="https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/266340950_1523239511389716_7134363116282512829_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=h32rGxJFf4oAX_03j0A&_nc_ht=scontent.ftun14-1.fna&oh=00_AfDexn53aXmH7giyGklDv1s98lLmPiZQs3z1S94sJADMZw&oe=6542240F"
+                src={currentUser.img}
                 alt=""
               />
-              <span>{currentUser?.username}</span>
+              <span>{currentUser.username}</span>
               {open && <div className="options">
-                {currentUser.isFreelencer && (
+                {currentUser.isSeller.includes(true) && (
                   <>
+                    <Link className="link" to="/servicess">
+                     <li> Services</li>
+                    </Link>
+                    <Link className="link" to="/add">
+                      <li>Add New Service</li>
+                    </Link>
                   </>
                 )}
-                {/* <Link className="link" to="/messages"> */}
-                <li>Messages</li>
-                {/* </Link> */}
-                {/* <Link className="link" to="/"> */}
-                <li>Logout</li>
-                {/* </Link> */}
+                <Link className="link" to="/orders">
+                  <li>Orders</li>
+                </Link>
+                <Link className="link" to="/messages">
+                  <li>Messages</li>
+                </Link>
+                <Link className="link" to="/">
+                  <li>Logout</li>
+                </Link>
               </div>}
             </div>
           ) : (
             <>
-              <span>Sign in</span>
-              {/* <Link className="link" to="/register"> */}
-              <button>Join</button>
-              {/* </Link> */}
+              <Link className="link" to="/login">
+                <span>Sign in</span>
+              </Link>
+              <Link className="link" to="/signup">
+                <button>Join</button>
+              </Link>
             </>
           )}
         </div>
       </div>
-      {(active !== "/") && (
+      {(active  !== "/") && (
         <>
           <hr />
           <div className="menu">
             {/* <Link className="link menuLink" to="/"> */}
-            <a>Graphics & Design</a>
+              <a>Graphics & Design</a>
             {/* </Link> */}
             {/* <Link className="link menuLink" to="/"> */}
-            <a>Video & Animation</a>
+              <a>Video & Animation</a>
             {/* </Link> */}
             {/* <Link className="link menuLink" to="/"> */}
-            <a>Writing & Translation</a>
+              <a>Writing & Translation</a>
             {/* </Link> */}
             {/* <Link className="link menuLink" to="/"> */}
             <a>AI Services</a>
