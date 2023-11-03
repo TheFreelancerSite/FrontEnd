@@ -60,10 +60,10 @@ function App() {
         // },
       ],
     },
-    // {
-    //   path: "/register",
-    //   element: <Register />,
-    // },
+    {
+      path: "/signup",
+      element: <Signup />,
+    },
     {
       path: "/login",
       element: <Signin />,
