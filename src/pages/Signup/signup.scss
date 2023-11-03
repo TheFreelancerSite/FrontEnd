@@ -11,11 +11,14 @@ body{
   padding: 0;
 }
 
+.logo { 
+  width: 50%;
+}
 
 .signup-image {
   max-width: 100%;
   height: 100%;
-  width: auto; /* This keeps the aspect ratio */
+  width: auto; 
 }
 
 form {
@@ -38,7 +41,7 @@ form {
   justify-content: space-between;
 }
 
-/* Common styles for labels and form inputs */
+
 label {
   color: gray;
   font-size: 18px;
@@ -62,7 +65,7 @@ button {
   width: 100%;
 }
 
-/* Toggle switch styles */
+
 .toggle {
   display: flex;
   align-items: center;
@@ -117,13 +120,13 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Styling for links */
+
 .link {
   color: #2196f3;
   cursor: pointer;
 }
 
-/* Responsive styles for screens with max-width 768px */
+
 @media (max-width: 768px) {
   .register {
     flex-direction: column;
