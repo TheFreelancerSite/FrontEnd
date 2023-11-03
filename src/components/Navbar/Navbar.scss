@@ -81,18 +81,22 @@
           color: gray;
         }
       }
+      li{
+        list-style-type: none;
+
+      }
 
       button {
-        color: white;
+        color: rgb(107, 46, 248);
         padding: 10px 20px;
         border-radius: 5px;
-        border: 1px solid white;
+        border: 1px solid rgb(7, 4, 4);
         background-color: transparent;
         cursor: pointer;
 
         &:hover {
-          background-color: #505BD1;
-          border-color: #505BD1;
+          background-color: #abb1f3;
+          border-color: #abb1f3;
         }
       }
     }

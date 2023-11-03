@@ -25,3 +25,6 @@ export const login = async (email , password) => {
   }
 }
 
+export const logout =  () => {
+  return localStorage.clear()
+  }
