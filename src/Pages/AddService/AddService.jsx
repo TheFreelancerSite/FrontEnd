@@ -1,11 +1,69 @@
-import React from "react";
+import React, {useState} from "react";
 import "./AddService.scss";
+import axios from 'react-axios'
+
 
 const AddService = () => {
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "design",
+    coverImage: null,
+    uploadImages: [],
+    description: "",
+    serviceTitle: "",
+    shortDescription: "",
+    deliveryTime: "",
+    revisionNumber: "",
+    features: [],
+    price: 0,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+    const newValue = type === "file" ? files[0] : value;
+
+    setFormData({
+      ...formData,
+      [name]: newValue,
+    });
+  };
+
+  const handleFeatureChange = (e, index) => {
+    const newFeatures = [...formData.features];
+    newFeatures[index] = e.target.value;
+
+    setFormData({
+      ...formData,
+      features: newFeatures,
+    });
+  };
+
+  const addFeature = () => {
+    setFormData({
+      ...formData,
+      features: [...formData.features, ""],
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Send a POST request with formData to your backend API
+      const response = await axios.post(`/api/createService/${userId}`, formData);
+
+      // Handle success - you can redirect or display a success message
+      console.log("Service created successfully:", response.data);
+    } catch (error) {
+      // Handle errors - you can show an error message
+      console.error("Service creation failed:", error);
+    }
+  };
+
   return (
     <div className="add">
       <div className="container">
-        <h1>Add New Gig</h1>
+        <h1>Add New Service</h1>
         <div className="sections">
           <div className="info">
             <label htmlFor="">Title</label>
@@ -50,5 +108,6 @@ const AddService = () => {
     </div>
   );
 };
+
 
 export default AddService;

@@ -1,12 +1,14 @@
 
 import './App.scss'
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import AddService from './components/AddService/AddService'
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/footer/Footer'
-import Orders from './components/orders/Orders'
-import Servicess from './components/Servicess/Servicess'
-import Signin from './components/Signin/Signin'
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/footer/Footer';
+import Orders from './components/orders/Orders';
+import Servicess from './Pages/Servicess/Servicess';
+import Signin from './components/Signin/Signin';
+import AddService from './Pages/AddService/AddService';
+import Servicee from './Pages/Servicee/Servicee';
+import MyServices from './Pages/MyServices/MyServices';
 
 
 
@@ -33,10 +35,10 @@ function App() {
           path: "/servicess",
           element: <Servicess />,
         },
-        // {
-        //   path: "/myGigs",
-        //   element: <MyGigs />,
-        // },
+        {
+          path: "/myServices",
+          element: <MyServices />,
+        },
         {
           path: "/orders",
           element: <Orders />,
@@ -53,10 +55,10 @@ function App() {
           path: "/add",
           element: <AddService />,
         },
-        // {
-        //   path: "/gig/:id",
-        //   element: <Gig />,
-        // },
+        {
+          path: "/Servicee/:id",
+          element: <Servicee />,
+        },
       ],
     },
     // {

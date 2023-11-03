@@ -31,13 +31,14 @@
       font-size: 34px;
       font-weight: bold;
 
-      
+
 
       .dot {
         font-weight: bold;
         color: #505BD1;
       }
     }
+
     .links {
       display: flex;
       align-items: center;
@@ -112,5 +113,61 @@
     color: gray;
     font-weight: 300;
     font-family: "Montserrat", sans-serif;
+  }
+
+  
+
+   
+  
+  
+  /* 2xl */
+  @media (max-width: 786px) {
+    .container,
+    .menu    
+     {
+      max-width: 786px;
+    }
+  }
+  
+  /* xl */
+  @media (max-width: 1280px) {
+    .container
+    
+     {
+      max-width: 1024px;
+    }
+  }
+  
+  /* lg */
+  @media (max-width: 1024px) {
+    .container
+    {
+      max-width: 768px;
+    }
+  }
+  
+  /* md */
+  @media (max-width: 768px) {
+    .container
+    {
+      max-width: 640px;
+    }
+  }
+  
+  /* sm */
+  @media (max-width: 640px) {
+    .container
+     {
+      max-width: 475px;
+    }
+  }
+  
+  /* xs */
+  @media (max-width: 475px) {
+    .container
+    
+     {
+      width: 100%;
+    }
   }
 }
