@@ -11,6 +11,13 @@ const AddService = () => {
     setInputs(values => ({...values, [name]: value}))
     // console.log(inputs)
   }
+
+  const handlesubmit =()=>{
+    axios.Post("http://localhost:3000/service/add/",inputs)
+    .then((response)=>{
+      
+    })
+  }
   useEffect(() => {
     // This code will run whenever the 'inputs' state is updated.
     console.log(inputs);
@@ -49,7 +56,7 @@ const AddService = () => {
             <input type="text" name="feauture2" onChange={handleChange} placeholder="e.g. file uploading" />
             <label htmlFor="">Price</label>
             <input type="number" name="price" onChange={handleChange}/>
-            <button>Create</button>
+            <button type="submit">Create</button>
           </div>
           
         </div>
