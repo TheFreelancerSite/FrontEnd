@@ -9,7 +9,7 @@ export default function Signin() {
     email: "",
     password: "",
   });
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +22,7 @@ const navigate = useNavigate()
       const response = await login(signinData.email, signinData.password);
       localStorage.setItem("token", response.token)
       localStorage.setItem("role" , response.payload.isSeller)
+      localStorage.setItem("imgUrl" , response.payload.imgUrl)
       if(response.payload.isSeller === false){
         navigate("/")
       }
