@@ -9,7 +9,7 @@ export default function Signin() {
     email: "",
     password: "",
   });
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,17 +22,14 @@ const navigate = useNavigate()
       const response = await login(signinData.email, signinData.password);
       localStorage.setItem("token", response.token)
       localStorage.setItem("role" , response.payload.isSeller)
-      localStorage.setItem("username" , response.payload.userName)
       localStorage.setItem("imgUrl" , response.payload.imgUrl)
-
-
       if(response.payload.isSeller === false){
         navigate("/")
       }
       if(response.payload.isSeller === true){
         navigate("/")
       }
-
+      
       console.log("Login successful:", response);
     } catch (error) {
       console.log("Login failed. Please check your email and password.", error);
@@ -66,7 +63,7 @@ const navigate = useNavigate()
 
           <button type="submit">Login</button>
           <p>
-            Don't have an account? <a class="link" href="/signup">Sign Up</a>
+            Don't have an account? <a class="link">Sign Up</a>
           </p>
         </div>
         <div className="right">
