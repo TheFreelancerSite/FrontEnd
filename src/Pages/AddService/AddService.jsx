@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AddService.scss";
+import axios from 'react-axios'
+
 
 const AddService = () => {
   const [inputs, setInputs] = useState({});
@@ -55,5 +57,6 @@ const AddService = () => {
     </div>
   );
 };
+
 
 export default AddService;
