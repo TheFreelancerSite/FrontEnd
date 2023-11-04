@@ -3,8 +3,12 @@ import "./signin.scss";
 import Img from "../../assets/login-bg.png";
 import { login } from "../../services/api.service";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {signIn} from "../../components/feautures/user"
+
 
 export default function Signin() {
+  const dispatch =useDispatch()
   const [signinData, setSigninData] = useState({
     email: "",
     password: "",
@@ -23,11 +27,15 @@ export default function Signin() {
       localStorage.setItem("token", response.token)
       localStorage.setItem("role" , response.payload.isSeller)
       localStorage.setItem("imgUrl" , response.payload.imgUrl)
+      //the response.payload is the thing that we want to store it 
+      console.log("this is he response from sign in ",response.payload)
+      dispatch(signIn({userId:response.payload.userId,isSeller:response.payload.isSeller,userName:response.payload.userName}))
+
       if(response.payload.isSeller === false){
-        navigate("/")
+        navigate("/freelancerHomePage")
       }
       if(response.payload.isSeller === true){
-        navigate("/")
+        navigate("/clientHomePage")
       }
       
       console.log("Login successful:", response);

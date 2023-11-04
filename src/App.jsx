@@ -10,6 +10,8 @@ import Orders from './components/orders/Orders'
 import Signup from './pages/Signup/signup'
 import Signin from './pages/Signin/Signin'
 import Home from './pages/home/Home'
+import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
+import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 
 
 
@@ -61,6 +63,13 @@ function App() {
           path: "/Servicee/:id",
           element: <Servicee />,
         },
+        {path:"/freelancerHomePage",
+        element :<FreelancerHomePage />
+        },
+        {
+          path :"/clientHomePage",
+          element: <ClientHomePage/>
+        }
       ],
     },
     {
