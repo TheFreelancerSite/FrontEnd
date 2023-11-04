@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./AddService.scss";
-import axios from 'react-axios'
-
+import axios from 'axios';
+import { useSelector} from "react-redux";
 
 const AddService = () => {
+  const user =useSelector((state)=>state.user.value)
+  console.log("this is the user redux ",user)
   const [inputs, setInputs] = useState({});
   const handleChange = (event) => {
     const name = event.target.name;
@@ -13,9 +15,9 @@ const AddService = () => {
   }
 
   const handlesubmit =()=>{
-    axios.Post("http://localhost:3000/service/add/",inputs)
+    axios.post(`http://localhost:3000/service/add/${user.userId}`,inputs)
     .then((response)=>{
-      
+      console.log(response)
     })
   }
   useEffect(() => {
@@ -56,7 +58,7 @@ const AddService = () => {
             <input type="text" name="feauture2" onChange={handleChange} placeholder="e.g. file uploading" />
             <label htmlFor="">Price</label>
             <input type="number" name="price" onChange={handleChange}/>
-            <button type="submit">Create</button>
+            <button type="submit" onClick={handlesubmit}>Create</button>
           </div>
           
         </div>
