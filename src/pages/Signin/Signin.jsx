@@ -29,13 +29,13 @@ export default function Signin() {
       localStorage.setItem("imgUrl" , response.payload.imgUrl)
       //the response.payload is the thing that we want to store it 
       console.log("this is he response from sign in ",response.payload)
-      dispatch(signIn({userId:response.payload.userId,isSeller:response.payload.isSeller}))
+      dispatch(signIn({userId:response.payload.userId,isSeller:response.payload.isSeller,userName:response.payload.userName}))
 
       if(response.payload.isSeller === false){
-        navigate("/")
+        navigate("/freelancerHomePage")
       }
       if(response.payload.isSeller === true){
-        navigate("/")
+        navigate("/clientHomePage")
       }
       
       console.log("Login successful:", response);
