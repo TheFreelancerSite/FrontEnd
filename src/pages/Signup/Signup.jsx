@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import "./signup.scss";
 import img from "../../assets/draw1aa-removebg-preview.png";
-// import logo from "../../assets/logo.png";
 import { register } from "../../services/api.service";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Signup() {
   const [signupData, setSignupData] = useState({
     userName: "",
     email: "",
     password: "",
-    image: "",
+    image: null,
     phone: "",
     country: "",
     description: "",
     isSeller: false,
   });
+  const [errorMsgEmail, setErrorMsgEmail] = useState("");
+  const [errorMsgPassword, setErrorMsgPassword] = useState("");
   const navigate = useNavigate();
-  console.log(signupData.image);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -37,29 +37,61 @@ export default function Signup() {
     }
   };
 
+  const validator = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    let isValid = true;
+
+    if (!emailRegex.test(signupData.email)) {
+      setErrorMsgEmail("Invalid email format");
+      isValid = false;
+    } else {
+      setErrorMsgEmail("");
+    }
+
+    if (!passwordRegex.test(signupData.password)) {
+      setErrorMsgPassword(
+        "Password should have a minimum of 8 characters, at least one letter, and one number"
+      );
+      isValid = false;
+    } else {
+      setErrorMsgPassword("");
+    }
+
+    return isValid;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append("userName", signupData.userName);
-      formData.append("email", signupData.email);
-      formData.append("password", signupData.password);
-      formData.append("image", signupData.image);
-      formData.append("country", signupData.country);
-      formData.append("phone", signupData.phone);
-      formData.append("description", signupData.description);
-      formData.append("isSeller", signupData.isSeller);
 
-      await register(formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      navigate("/login");
+    if (validator()) {
+      try {
+        const formData = new FormData();
+        formData.append("userName", signupData.userName);
+        formData.append("email", signupData.email);
+        formData.append("password", signupData.password);
+        formData.append("image", signupData.image);
+        formData.append("country", signupData.country);
+        formData.append("phone", signupData.phone);
+        formData.append("description", signupData.description);
+        formData.append("isSeller", signupData.isSeller);
 
-      console.log("Success");
-    } catch (error) {
-      console.error("Signup failed:", error);
+        await register(formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        setSuccessMessage("Registration successful. Redirecting to login...");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+
+        console.log("Success");
+      } catch (error) {
+        console.error("Signup failed:", error);
+      }
     }
   };
 
@@ -85,6 +117,9 @@ export default function Signup() {
             value={signupData.email}
             onChange={handleChange}
           />
+          {errorMsgEmail && (
+            <div className="error-message">{errorMsgEmail}</div>
+          )}
 
           <label htmlFor="image">Profile Picture</label>
           <input name="image" type="file" onChange={handleChange} />
@@ -96,6 +131,9 @@ export default function Signup() {
             value={signupData.password}
             onChange={handleChange}
           />
+          {errorMsgPassword && (
+            <div className="error-message">{errorMsgPassword}</div>
+          )}
 
           <label htmlFor="phone">Phone Number</label>
           <input
@@ -135,12 +173,14 @@ export default function Signup() {
               Login
             </a>
           </p>
+          {successMessage && (
+            <div className="success-message">{successMessage}</div>
+          )}
         </div>
         <div className="right">
           <div>
             <img src={img} className="signup-image" alt="Sample image" />
           </div>
-          
         </div>
       </form>
     </div>
