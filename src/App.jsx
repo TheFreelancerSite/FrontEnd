@@ -12,6 +12,7 @@ import Signin from './pages/Signin/Signin'
 import Home from './pages/home/Home'
 import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
+import UserApplicants from './pages/userApplicants/UserApplicants';
 
 
 
@@ -69,7 +70,17 @@ function App() {
         {
           path :"/clientHomePage",
           element: <ClientHomePage/>
-        }
+        },
+
+        {
+          path:"/services",
+          element:<MyServices /> 
+        },
+        {
+          path:"/applicant/:serviceId",
+          element:<UserApplicants /> 
+        },
+
       ],
     },
     {
