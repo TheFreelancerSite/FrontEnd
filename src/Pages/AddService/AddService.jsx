@@ -1,113 +1,104 @@
-import React, {useState} from "react";
-import "./AddService.scss";
-import axios from 'react-axios'
+  import React, { useEffect, useState } from "react";
+  import "./AddService.scss";
+  import axios from 'axios';
+  import { useSelector} from "react-redux";
 
-
-const AddService = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    category: "design",
-    coverImage: null,
-    uploadImages: [],
-    description: "",
-    serviceTitle: "",
-    shortDescription: "",
-    deliveryTime: "",
-    revisionNumber: "",
-    features: [],
-    price: 0,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    const newValue = type === "file" ? files[0] : value;
-
-    setFormData({
-      ...formData,
-      [name]: newValue,
+  const AddService = () => {
+    const user =useSelector((state)=>state.user.value)
+    console.log("this is the user redux ",user)
+    const [inputs, setInputs] = useState({
+      image: [],
     });
-  };
-
-  const handleFeatureChange = (e, index) => {
-    const newFeatures = [...formData.features];
-    newFeatures[index] = e.target.value;
-
-    setFormData({
-      ...formData,
-      features: newFeatures,
-    });
-  };
-
-  const addFeature = () => {
-    setFormData({
-      ...formData,
-      features: [...formData.features, ""],
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Send a POST request with formData to your backend API
-      const response = await axios.post(`/api/createService/${userId}`, formData);
-
-      // Handle success - you can redirect or display a success message
-      console.log("Service created successfully:", response.data);
-    } catch (error) {
-      // Handle errors - you can show an error message
-      console.error("Service creation failed:", error);
+    
+    const handleChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setInputs(values => ({...values, [name]: value}))
+      console.log(inputs)
     }
-  };
 
-  return (
-    <div className="add">
-      <div className="container">
-        <h1>Add New Service</h1>
-        <div className="sections">
-          <div className="info">
-            <label htmlFor="">Title</label>
-            <input
-              type="text"
-              placeholder="e.g. I will do something I'm really good at"
-            />
-            <label htmlFor="">Category</label>
-            <select name="cats" id="cats">
+    const handleFileChange = (event) => {
+      const name = event.target.name;
+      const file = event.target.files[0]; 
+      console.log(file)
+      setInputs((values) => ({ ...values, [name]: file }));
+    };
+
+    const handlesubmit = () => {
+      // const config = {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //     'Authorization': 'Bearer your-api-key', // If required
+      //   },
+      // };
+      const owner = user.isSeller ? "client" : "freelancer";
+      const formData = new FormData();
+       formData.append('title', inputs.title);
+       formData.append('category', inputs.cats);
+      
+        formData.append('image', inputs.image);
+         
+          formData.append('description', inputs.description);
+          formData.append('deliveryTime', inputs.deliveryTime);
+          formData.append('feature1', inputs.feature1);
+          formData.append('feature2', inputs.feature2);
+          formData.append('price', inputs.price);
+          formData.append('owner', owner);
+
+  axios.post(`http://localhost:3000/service/add/${user.userId}`, formData)
+    .then((response) => {
+      console.log(response);
+    });
+    };
+    
+
+    useEffect(() => {
+      // This code will run whenever the 'inputs' state is updated.
+      console.log("this is inputs ",inputs);
+      // console.log("this is the form data", formData)
+    }, [inputs]);
+    return (
+      <div className="add">
+        <div className="container">
+          <h1>Add New Service</h1>
+          <div className="sections">
+            <div className="info">
+              <label htmlFor="">Title</label>
+              <input
+                type="text"
+                placeholder="give a title of your job"
+                name="title"
+                onChange={handleChange}
+              />
+              <label htmlFor="">Category</label>
+              <select name="cats" id="cats" onChange={handleChange}>
               <option value="design">Design</option>
               <option value="web">Web Development</option>
               <option value="animation">Animation</option>
               <option value="music">Music</option>
-            </select>
-            <label htmlFor="">Cover Image</label>
-            <input type="file" />
-            <label htmlFor="">Upload Images</label>
-            <input type="file" multiple />
-            <label htmlFor="">Description</label>
-            <textarea name="" id="" placeholder="Brief descriptions to introduce your service to customers" cols="0" rows="16"></textarea>
-            <button>Create</button>
-          </div>
-          <div className="details">
-            <label htmlFor="">Service Title</label>
-            <input type="text" placeholder="e.g. One-page web design" />
-            <label htmlFor="">Short Description</label>
-            <textarea name="" id="" placeholder="Short description of your service" cols="30" rows="10"></textarea>
-            <label htmlFor="">Delivery Time (e.g. 3 days)</label>
-            <input type="number" />
-            <label htmlFor="">Revision Number</label>
-            <input type="number" />
-            <label htmlFor="">Add Features</label>
-            <input type="text" placeholder="e.g. page design" />
-            <input type="text" placeholder="e.g. file uploading" />
-            <input type="text" placeholder="e.g. setting up a domain" />
-            <input type="text" placeholder="e.g. hosting" />
-            <label htmlFor="">Price</label>
-            <input type="number" />
+              </select>
+              <label htmlFor="">Upload Images</label>
+              <input type="file" name="image" onChange={handleFileChange} />
+              <label htmlFor="">Description</label>
+              <textarea name="description" onChange={handleChange} id="" placeholder="Brief descriptions to introduce your service" cols="0" rows="16"></textarea>
+            </div>
+            <div className="details">
+
+              <label htmlFor="">Delivery Time (e.g. 3 days)</label>
+              <input type="number" name="deliveryTime" onChange={handleChange} />
+              <label htmlFor="">Add Features</label>
+              <input type="text" name="feature1" onChange={handleChange} placeholder="e.g. page design" />
+              <input type="text" name="feature2" onChange={handleChange} placeholder="e.g. file uploading" />
+              <label htmlFor="">Price</label>
+              <input type="number" name="price" onChange={handleChange}/>
+              <button type="submit" onClick={handlesubmit}>Create</button>
+            </div>
+            
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 
-export default AddService;
+  export default AddService;
