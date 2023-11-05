@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import axios from 'axios'
 import { useSelector} from "react-redux";
 import ServiceCard from '../../components/ServiceCard/ServiceCard';
+import Search from '../../components/Search/Search';
 
 function ClientHomePage() {
   const user =useSelector((state)=>state.user.value)
@@ -35,6 +36,8 @@ function ClientHomePage() {
   },[])
 
   return (
+    <>
+    <Search />
     <div className="services">
       <div className="container">
         <h1>Available services</h1>
@@ -46,6 +49,7 @@ function ClientHomePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
