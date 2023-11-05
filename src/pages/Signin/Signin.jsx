@@ -42,10 +42,10 @@ export default function Signin() {
         })
       );
       if (response.payload.isSeller === false) {
-        navigate("/");
+        navigate("/freelancerHomePage");
       }
       if (response.payload.isSeller === true) {
-        navigate("/");
+        navigate("/clientHomePage");
       }
       console.log("Login successful:", response);
     } catch (error) {

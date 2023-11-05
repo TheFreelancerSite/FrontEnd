@@ -8,7 +8,7 @@ import axios from 'axios'
 const ServiceCard = ({ item }) => {
 
  const[postUser,setPostUser]=useState({})
- const imgUrl = useSelector((store) => store.user.value.imgUrl)
+ const imgUrl = useSelector((state) => state.user.value.imgUrl)
 // console.log(imgUrl)
  useEffect(()=>{
     axios.get(`http://localhost:3000/service/getUserNameOfService/${item.id}`)

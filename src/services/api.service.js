@@ -28,3 +28,12 @@ export const login = async (email , password) => {
 export const logout =  () => {
   return localStorage.clear()
   }
+
+export const getUser = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/user/getUser/${userId}`)
+    return response
+  }catch (error) {
+    console.log(error)
+  }
+}
