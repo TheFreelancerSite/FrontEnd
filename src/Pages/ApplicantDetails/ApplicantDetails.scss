@@ -1,0 +1,26 @@
+.applicant-button-container {
+    display: flex;
+    gap: 10px; /* Add spacing between buttons */
+  }
+  
+  .accept-button {
+    background-color: blue; /* Blue background for the "Accept" button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .reject-button {
+    background-color: red; /* Red background for the "Reject" button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .accept-button:hover,
+  .reject-button:hover {
+    background-color: #fff; /* Change the background color on hover */
+  }
+  

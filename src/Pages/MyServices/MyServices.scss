@@ -1,133 +1,135 @@
 .myGigs {
+  display: flex;
+  justify-content: center;
+  color: #555;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 20px;
+
+  .title {
     display: flex;
-    justify-content: center;
-    color: #555;
-  
-    .container {
-      width: 1400px;
-      padding: 50px 0px;
-  
-      .title {
-        display: flex;
-        justify-content: space-between;
-  
-        button {
-          background-color: #1dbf73;
-          color: white;
-          font-weight: 500;
-          border: none;
-          padding: 10px;
-          cursor: pointer;
+    justify-content: space-between;
+
+    button {
+      background-color: #231aaa;
+      color: white;
+      font-weight: 500;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th,
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    td {
+      sup {
+        font-size: 12px;
+      }
+
+      .image {
+        width: 50px;
+        height: 25px;
+        object-fit: cover;
+      }
+
+      .delete {
+        width: 20px;
+        cursor: pointer;
+      }
+
+      a {
+        color: #007bff; // Link text color
+        text-decoration: none; // Remove default underline
+        margin-right: 10px; // Add spacing between links
+
+        &:hover {
+          color: #0056b3; // Link color on hover
+          text-decoration: underline; // Add underline on hover
         }
       }
-  
-      table {
-        width: 100%;
-  
-        tr {
-          height: 50px;
-          th {
-            text-align: left;
-          }
-          td {
-  
-            sup{
-              font-size: 12px;
-            }
-            
-            .image {
-              width: 50px;
-              height: 25px;
-              object-fit: cover;
-            }
-  
-            .delete {
-              width: 20px;
-              cursor: pointer;
-            }
-  
-          }
-          &:nth-child(even) {
-            background-color: #1dbf730f;
-          }
-        }
-      }
-    }
-    .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
     }
 
-    .card {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px;
-        width: 250px; /* Adjust the width as needed */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .card img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .title {
-        font-size: 16px;
-        margin: 10px 0;
-    }
-
-    .price {
-        font-weight: bold;
-    }
-
-    .sales {
-        color: #666;
-        margin: 10px 0;
-    }
-
-     /* 2xl */
-  @media (max-width: 786px) {
-    .container {
-      max-width: 786px;
-    }
-  }
-  
-  /* xl */
-  @media (max-width: 1280px) {
-    .container {
-      max-width: 1024px;
-    }
-  }
-  
-  /* lg */
-  @media (max-width: 1024px) {
-    .container {
-      max-width: 768px;
-    }
-  }
-  
-  /* md */
-  @media (max-width: 768px) {
-    .container {
-      max-width: 640px;
-    }
-  }
-  
-  /* sm */
-  @media (max-width: 640px) {
-    .container {
-      max-width: 475px;
-    }
-  }
-  
-  /* xs */
-  @media (max-width: 475px) {
-    .container {
-      width: 100%;
+    tr:nth-child(even) {
+      background-color: #1dbf730f;
     }
   }
 }
-  
-  
+
+/* Responsive Card Layout */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: calc(33.33% - 20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .title {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+  .sales {
+    color: #666;
+    margin: 10px 0;
+  }
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 786px) {
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 5px;
+  }
+
+  .card {
+    width: 100%;
+  }
+}

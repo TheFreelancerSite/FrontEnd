@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import "./signin.scss";
 import Img from "../../assets/login-bg.png";
+import toast, { Toaster } from "react-hot-toast";
 import { login } from "../../services/api.service";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { signIn } from "../../components/feautures/user";
 export default function Signin() {
   const [signinData, setSigninData] = useState({
     email: "",
     password: "",
   });
-  const navigate = useNavigate()
+ 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,23 +24,41 @@ export default function Signin() {
     e.preventDefault();
     try {
       const response = await login(signinData.email, signinData.password);
-      localStorage.setItem("token", response.token)
-      localStorage.setItem("role" , response.payload.isSeller)
-      localStorage.setItem("imgUrl" , response.payload.imgUrl)
-      if(response.payload.isSeller === false){
-        navigate("/")
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("role", response.payload.isSeller);
+      localStorage.setItem("imgUrl", response.payload.imgUrl);
+      localStorage.setItem("imgUrl", response.payload.imgUrl);
+      // dispatch(addUser({
+      //   token : response.token,
+      //   isSeller : response.payload.isSeller,
+      //   imgUrl : response.payload.imgUrl
+      // }))
+      dispatch(
+        signIn({
+          userId: response.payload.userId,
+          isSeller: response.payload.isSeller,
+          userName: response.payload.userName,
+          imgUrl: response.payload.imgUrl,
+        })
+      );
+      if (response.payload.isSeller === false) {
+        navigate("/freelancerHomePage");
       }
-      if(response.payload.isSeller === true){
-        navigate("/")
+      if (response.payload.isSeller === true) {
+        navigate("/clientHomePage");
       }
-      
       console.log("Login successful:", response);
     } catch (error) {
-      console.log("Login failed. Please check your email and password.", error);
+      // console.log("Login failed. Please check your email and password.", error); 
+      toast.error("Login failed. Please check your email and password")
+
     }
   };
+;
+
   return (
     <div className="login">
+      <Toaster position="top-right" reverseOrder={false} />
       <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>Sign in</h1>
@@ -63,7 +85,10 @@ export default function Signin() {
 
           <button type="submit">Login</button>
           <p>
-            Don't have an account? <a class="link">Sign Up</a>
+            Don't have an account?{" "}
+            <a class="link" href="/signup">
+              Sign Up
+            </a>
           </p>
         </div>
         <div className="right">
