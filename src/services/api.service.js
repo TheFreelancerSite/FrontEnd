@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/user/";
+const API_URL = "http://localhost:3000";
 
 export const register = async (userData) => {
   try {
-    const response = await axios.post(API_URL + "signup", userData);
+    const response = await axios.post(API_URL+"/user/signup", userData);
     return response.data;
   } catch (error) {
     console.error("Error signing up:", error);
@@ -15,7 +15,7 @@ export const register = async (userData) => {
 
 export const login = async (email , password) => {
   try {
-    const response = await axios.post(API_URL + "signin", {
+    const response = await axios.post(API_URL+"/user/signin", {
       email : email , 
       password : password
     })
