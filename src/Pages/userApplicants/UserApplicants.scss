@@ -1,0 +1,33 @@
+.user-applicants-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 80px auto; /* Set margin to center the table */
+    margin-bottom: 500px;
+  
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+  
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  
+    tr:hover {
+      background-color: #e0e0e0;
+    }
+  
+    td {
+      text-align: center;
+    }
+  
+    td:nth-child(1) {
+      border-right: 1px solid #ccc; /* Add right border to separate columns */
+    }
+  }
+  
