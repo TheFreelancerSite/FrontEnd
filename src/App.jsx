@@ -13,7 +13,7 @@ import Home from './pages/home/Home'
 import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
-
+import Profile from './Pages/Profile/Profile';
 
 
 
@@ -79,6 +79,10 @@ function App() {
         {
           path:"/applicant/:serviceId",
           element:<UserApplicants /> 
+        },
+        {
+          path:"/profil",
+          element:<Profile /> 
         },
 
       ],

@@ -73,6 +73,9 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
+                  <Link className="link" to="/profil">
+                    <li>Profil</li>
+                  </Link>
                   <Link className="link" to="/">
                     <li onClick={handlLogout}>Logout</li>
                   </Link>
@@ -89,8 +92,8 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to="/messages">
-                    <li>freelancer</li>
+                  <Link className="link" to="/profil">
+                    <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
                     <li onClick={handlLogout}>Logout</li>
