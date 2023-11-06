@@ -2,9 +2,12 @@
   import "./AddService.scss";
   import axios from 'axios';
   import { useSelector} from "react-redux";
+  import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
   const AddService = () => {
     const user =useSelector((state)=>state.user.value)
+    const navigate =useNavigate()
     console.log("this is the user redux ",user)
     const [inputs, setInputs] = useState({
       image: [],
@@ -36,19 +39,28 @@
        formData.append('title', inputs.title);
        formData.append('category', inputs.cats);
       
-        formData.append('image', inputs.image);
+            formData.append('image', inputs.image);
          
           formData.append('description', inputs.description);
           formData.append('deliveryTime', inputs.deliveryTime);
-          formData.append('feature1', inputs.feature1);
-          formData.append('feature2', inputs.feature2);
+          formData.append('feautures', inputs.feature1);
           formData.append('price', inputs.price);
-          formData.append('owner', owner);
+            formData.append('owner', owner);
 
   axios.post(`http://localhost:3000/service/add/${user.userId}`, formData)
     .then((response) => {
       console.log(response);
-    });
+      toast.success('Added succefully')
+      if(user.isSeller){
+        navigate("/clientHomePage")
+      }else if(!user.isSeller){
+        navigate("/freelancerHomePage")
+      }
+    })
+    .catch((error)=>{
+      toast.error("sorry error")
+
+    })
     };
     
 
@@ -59,6 +71,7 @@
     }, [inputs]);
     return (
       <div className="add">
+        <Toaster position="top-center" reverseOrder={false} />
         <div className="container">
           <h1>Add New Service</h1>
           <div className="sections">
@@ -87,8 +100,7 @@
               <label htmlFor="">Delivery Time (e.g. 3 days)</label>
               <input type="number" name="deliveryTime" onChange={handleChange} />
               <label htmlFor="">Add Features</label>
-              <input type="text" name="feature1" onChange={handleChange} placeholder="e.g. page design" />
-              <input type="text" name="feature2" onChange={handleChange} placeholder="e.g. file uploading" />
+              <input type="text" name="feautures" onChange={handleChange} placeholder="e.g. page design" />
               <label htmlFor="">Price</label>
               <input type="number" name="price" onChange={handleChange}/>
               <button type="submit" onClick={handlesubmit}>Create</button>
