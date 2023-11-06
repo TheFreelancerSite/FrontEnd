@@ -12,10 +12,7 @@ import Search from '../../components/Search/Search';
 function FreelancerHomePage() {
 
   const user =useSelector((state)=>state.user.value)
-  const [sort, setSort] = useState("sales");
-  const [open, setOpen] = useState(false);
-  const minRef = useRef();
-  const maxRef = useRef();
+
   const[services,setServices]=useState([])
   // const reSort = (type) => {
   //   setSort(type);
@@ -34,6 +31,7 @@ function FreelancerHomePage() {
       setServices(response.data)
     }).catch((error)=>{
       console.log(error)
+      
     })
   },[])
 
