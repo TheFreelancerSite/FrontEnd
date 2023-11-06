@@ -9,7 +9,7 @@ import Footer from './components/footer/Footer'
 import Orders from './components/orders/Orders'
 import Signup from './Pages/Signup/Signup'
 import Signin from './Pages/Signin/Signin'
-import Home from './pages/home/Home'
+import Home from './Pages/home/Home'
 import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';

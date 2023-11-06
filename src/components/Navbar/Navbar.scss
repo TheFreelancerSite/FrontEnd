@@ -25,12 +25,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0px;
+    padding: 0px 0px;
 
     .logo {
       font-size: 34px;
       font-weight: bold;
-
+      margin: 10px;
 
 
       .dot {
@@ -85,7 +85,7 @@
         list-style-type: none;
 
       }
-
+     
       button {
         color: rgb(107, 46, 248);
         padding: 10px 20px;
