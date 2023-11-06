@@ -6,6 +6,9 @@ import { login } from "../../services/api.service";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../components/feautures/user";
+import Navbar from "../../components/Navbar/Navbar";
+import { Link } from "react-router-dom";
+
 export default function Signin() {
   const [signinData, setSigninData] = useState({
     email: "",
@@ -26,7 +29,6 @@ export default function Signin() {
       const response = await login(signinData.email, signinData.password);
       localStorage.setItem("token", response.token);
       localStorage.setItem("role", response.payload.isSeller);
-      localStorage.setItem("imgUrl", response.payload.imgUrl);
       localStorage.setItem("imgUrl", response.payload.imgUrl);
       // dispatch(addUser({
       //   token : response.token,
@@ -58,11 +60,15 @@ export default function Signin() {
 
   return (
     <div className="login">
+    
       <Toaster position="top-right" reverseOrder={false} />
       <form onSubmit={handleSubmit}>
         <div className="left">
+        <Link to="/" className="logo">
+          <span className="text">Freelenci</span>
+          <span className="dot">.</span>
+        </Link>
           <h1>Sign in</h1>
-
           <label htmlFor="">Email</label>
           <input
             name="email"
