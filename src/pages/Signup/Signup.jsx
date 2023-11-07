@@ -3,6 +3,7 @@ import "./signup.scss";
 import img from "../../assets/draw1aa-removebg-preview.png";
 import { register } from "../../services/api.service";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [signupData, setSignupData] = useState({
@@ -99,6 +100,10 @@ export default function Signup() {
     <div className="register">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="left">
+        <Link to="/" className="logo">
+          <span className="text">Freelenci</span>
+          <span className="dot">.</span>
+        </Link>
           <h1>Create a new account</h1>
           <label htmlFor="userName">UserName</label>
           <input
