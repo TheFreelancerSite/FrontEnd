@@ -9,6 +9,8 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
 const user = useSelector((state) => state.user.value.isSeller)
+const userId = useSelector((state) => state.user.value.userId)
+
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
@@ -73,7 +75,7 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to="/profil">
+                  <Link className="link" to={`/profil/${userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
@@ -92,7 +94,7 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to="/profil">
+                  <Link className="link" to={`/profil/${userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
