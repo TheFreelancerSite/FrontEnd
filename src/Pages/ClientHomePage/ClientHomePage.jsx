@@ -28,7 +28,7 @@ function ClientHomePage() {
     console.log(user.userId)
     axios.get(`http://localhost:3000/service/getserviceUser/${user.userId}`)
     .then((response)=>{
-      console.log(response.data)
+      console.log("what i want " ,response.data)
       setServices(response.data)
     }).catch((error)=>{
       console.log(error)

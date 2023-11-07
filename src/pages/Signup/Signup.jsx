@@ -104,7 +104,7 @@ export default function Signup() {
           <input
             name="userName"
             type="text"
-            placeholder="abdou"
+            placeholder="userName"
             value={signupData.userName}
             onChange={handleChange}
           />
@@ -179,7 +179,7 @@ export default function Signup() {
         </div>
         <div className="right">
           <div>
-            <img src={img} className="signup-image" alt="Sample image" />
+            {/* <img src={img} className="signup-image" alt="Sample image" /> */}
           </div>
         </div>
       </form>

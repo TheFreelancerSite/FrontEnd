@@ -18,6 +18,7 @@ function Servicee() {
         .then((response) => {
           console.log("Response from getUserNameOfService:", response.data);
           setPostUser(response.data);
+          console.log("this is the postUser ",postUser)
         })
         .catch((error) => {
           console.error("Error in getUserNameOfService:", error);
@@ -60,7 +61,7 @@ function Servicee() {
           <div className="user">
             <img
               className="pp"
-              src={user.imgUrl}
+              src={postUser.imgUrl}
               alt=""
             />
             <span>{postUser.userName}</span>
@@ -95,7 +96,7 @@ function Servicee() {
             <h2>About The Seller</h2>
             <div className="user">
               <img
-                src={user.imgUrl}
+                src={postUser.imgUrl}
                 alt=""
               />
               <div className="info">

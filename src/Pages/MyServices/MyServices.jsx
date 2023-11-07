@@ -14,7 +14,7 @@ function MyServices() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/service/getserviceUser/${user.userId}`)
+    axios.get(`http://localhost:3000/service/getServicesForSpecificUser/${user.userId}`)
       .then((response) => {
         setServices(response.data);
       })
