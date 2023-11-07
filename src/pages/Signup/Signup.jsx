@@ -3,6 +3,7 @@ import "./signup.scss";
 import img from "../../assets/draw1aa-removebg-preview.png";
 import { register } from "../../services/api.service";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [signupData, setSignupData] = useState({
@@ -63,9 +64,10 @@ export default function Signup() {
   };
 
   const handleSubmit = async (e) => {
+    console.log(signupData)
     e.preventDefault();
 
-    if (validator()) {
+   
       try {
         const formData = new FormData();
         formData.append("userName", signupData.userName);
@@ -89,100 +91,110 @@ export default function Signup() {
         }, 2000);
 
         console.log("Success");
+        console.log(signupData)
       } catch (error) {
         console.error("Signup failed:", error);
+        console.log(signupData)
+
       }
-    }
+    
   };
 
   return (
-    <div className="register">
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="left">
-          <h1>Create a new account</h1>
-          <label htmlFor="userName">UserName</label>
-          <input
-            name="userName"
-            type="text"
-            placeholder="userName"
-            value={signupData.userName}
-            onChange={handleChange}
-          />
+   
+      <div className="signup-container">
+        <div className="signup-content">
+          <div className="title">Registration</div>
+          <div className="content">
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <div className="user-details">
 
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="email"
-            value={signupData.email}
-            onChange={handleChange}
-          />
-          {errorMsgEmail && (
-            <div className="error-message">{errorMsgEmail}</div>
-          )}
+                <div className="input-box">
+                  <span className="details">Username</span>
+                  <input
+                    name="userName"
+                     type="text"
+                     placeholder="userName"
+                     value={signupData.userName}
+                     onChange={handleChange}
+                 />
+                </div>
+                <div className="input-box">
+                  <span className="details">Email</span>
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="email"
+                    value={signupData.email}
+                    onChange={handleChange}
+                   />
+                </div>
+                <div className="input-box">
+                  <span className="details">Phone Number</span>
+                  <input
+                   name="phone"
+                   type="text"
+                   placeholder="+216 234 567 89"
+                   value={signupData.phone}
+                   onChange={handleChange}
+                   />
+                </div>
+                <div className="input-box">
+                  <span className="details">Country</span>
+                  <input
+                    name="country"
+                    type="text"
+                    placeholder="Tunisia"
+                    value={signupData.country}
+                    onChange={handleChange}
+                   />
+                </div>
+                
+                <div className="input-box">
+                  <span className="details">Password</span>
+                  <input
+                   name="password"
+                   type="password"
+                   value={signupData.password}
+                   onChange={handleChange}
+                   />
+                </div>
+                <div className="input-box">
+                  <span className="details">Confirm Password</span>
+                  <input type="text" placeholder="Confirm your password" required />
+                </div>
+                <div className="input-box">
+                  <span className="details">Register as</span>
+                  <select
+                   name="registerAs"
+                   value={signupData.registerAs}
+                   onChange={handleChange}
+                   >
+                  <option value="freelancer">Freelancer</option>
+                   <option value="client">Client</option>
+                </select>
+                </div>
+                <div className="input-box">
+                  <span className="details">Profil picture </span>
+                  <input name="image" type="file" onChange={handleChange} />
+                </div>
+                <div className="button">
+                <input type="submit" value="Register" />
+              </div>
+              </div>
 
-          <label htmlFor="image">Profile Picture</label>
-          <input name="image" type="file" onChange={handleChange} />
-
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            value={signupData.password}
-            onChange={handleChange}
-          />
-          {errorMsgPassword && (
-            <div className="error-message">{errorMsgPassword}</div>
-          )}
-
-          <label htmlFor="phone">Phone Number</label>
-          <input
-            name="phone"
-            type="text"
-            placeholder="+216 234 567 89"
-            value={signupData.phone}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="country">Country</label>
-          <input
-            name="country"
-            type="text"
-            placeholder="Tunisia"
-            value={signupData.country}
-            onChange={handleChange}
-          />
-
-          <div className="toggle">
-            <label htmlFor="isSeller">Activate the seller account</label>
-            <label className="switch">
-              <input
-                name="isSeller"
-                type="checkbox"
-                checked={signupData.isSeller}
-                onChange={handleChange}
-              />
-              <span className="slider round"></span>
-            </label>
+            </form>
+             <p>
+                Don't have an account?{" "}
+                <Link className="link" to="/login">
+                Sign In
+                </Link>
+              </p>
+            
           </div>
-
-          <button type="submit">Register</button>
-          <p>
-            Already have an account?{" "}
-            <a href="/login" className="link">
-              Login
-            </a>
-          </p>
-          {successMessage && (
-            <div className="success-message">{successMessage}</div>
-          )}
         </div>
-        <div className="right">
-          <div>
-            {/* <img src={img} className="signup-image" alt="Sample image" /> */}
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+      </div>
+    );
+    
+  
 }

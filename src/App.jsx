@@ -9,20 +9,25 @@ import Footer from './components/footer/Footer'
 import Orders from './components/orders/Orders'
 import Signup from './Pages/Signup/Signup'
 import Signin from './Pages/Signin/Signin'
-import Home from './pages/home/Home'
+import Home from './Pages/home/Home'
 import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
-
+import Profile from './Pages/Profile/Profile';
+import { useState } from 'react';
 
 
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };;
   const Layout = () => {
     return (
       <div className="app">
-        <Navbar />
-        <Outlet />
+        <Navbar onJoinClick={toggleModal} />
+        <Outlet />  
         {/* <Footer /> */}
       </div>
     );
@@ -34,7 +39,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <Home showModal={showModal} setShowModal={setShowModal} />,
         },
         // {
         //   path: "/servicess",
@@ -80,17 +85,22 @@ function App() {
           path:"/applicant/:serviceId",
           element:<UserApplicants /> 
         },
-
+        {
+          path:"/profil",
+          element:<Profile /> 
+        },
+        
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+        {
+          path: "/login",
+          element: <Signin />,
+        },
       ],
     },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
-    {
-      path: "/login",
-      element: <Signin />,
-    },
+
   ]);
   
     return <RouterProvider router={router} />;
