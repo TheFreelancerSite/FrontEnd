@@ -29,11 +29,14 @@ export const logout =  () => {
   return localStorage.clear()
   }
 
-export const getUser = async(userId) => {
-  try {
-    const response = await axios.get(`${API_URL}/user/getUser/${userId}`)
-    return response
-  }catch (error) {
-    console.log(error)
-  }
+  
+  export const getUser = async (userId) => {
+    try {
+      const response = await axios.get(`${API_URL}/user/getUser/${userId}`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error; 
+    }
 }
