@@ -24,7 +24,7 @@ const ServiceCard = ({ item }) => {
         <div className="info">
           <div className="user">
             {/* here we gonna put the user img in the store to access it here  */}
-            <img src={imgUrl} alt="" />
+            <img src={postUser.imgUrl} alt="" />
             <span>{postUser.userName}</span>
           </div>
           <p>{item.title}</p>
