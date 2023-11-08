@@ -7,8 +7,13 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+  const[openModel,setModel]=useState(false)
   const { pathname } = useLocation();
 const user = useSelector((state) => state.user.value.isSeller)
+
+const handleJoinClick = () => {
+  setShowModal(true);
+};
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
@@ -34,6 +39,7 @@ const user = useSelector((state) => state.user.value.isSeller)
   };
 console.log(currentUser.isSeller);
   return (
+    
     <div className={active && pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
@@ -108,7 +114,7 @@ console.log(currentUser.isSeller);
                 <span>Sign in</span>
               </Link>
               <Link className="link" to="/signup">
-                <button>Join</button>
+                <button >Join</button>
               </Link>
             </>
           )}
