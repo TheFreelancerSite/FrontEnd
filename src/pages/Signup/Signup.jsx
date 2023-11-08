@@ -161,7 +161,7 @@ export default function Signup() {
                 </div>
                 <div className="input-box">
                   <span className="details">Confirm Password</span>
-                  <input type="text" placeholder="Confirm your password" required />
+                  <input type="text" placeholder="Confirm your password"  />
                 </div>
                 <div className="input-box">
                   <span className="details">Register as</span>
