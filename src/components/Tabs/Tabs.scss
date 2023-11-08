@@ -1,0 +1,40 @@
+// Tabs.scss
+
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px; // Set the desired width for your tabs container
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff; // Background color for the tabs
+    padding: 10px;
+   
+  
+    .tab {
+      cursor: pointer;
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      user-select: none;
+      transition: background-color 0.3s;
+  
+      &.active {
+        background-color: #007bff; // Active tab background color
+        color: #fff; // Active tab text color
+      }
+  
+      &:hover {
+        background-color: #ddd; // Hovered tab background color
+      }
+    }
+  }
+  
+  .tab-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

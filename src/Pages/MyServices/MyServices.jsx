@@ -27,7 +27,7 @@ function MyServices() {
     <div className="myGigs">
       <div className="container">
         <div className="title">
-          <h1>{currentUser.isSeller ? "My Services" : "Orders"}</h1>
+          <h1>{currentUser.isSeller ? "Pending Services" : "Orders"}</h1>
           {currentUser.isSeller && (
             <Link to="/add">
               <button>Add New Service</button>
@@ -49,19 +49,20 @@ function MyServices() {
               {services.map((service) => (
                 <tr key={service.id}>
                   <td>{service.title}</td>
-                  <td>{service.createdAt}</td>
+                  <td>{service.createdAt.slice(0, 10)}</td>
                   <td>{service.price}</td>
                   <td>
                     <Link to={`/edit/${service.id}`}>Edit</Link> |{" "}
                     <Link to={`/delete/${service.id}`}>Delete</Link>|{" "}
                     <Link to={`/applicant/${service.id}`}>See applicants</Link>
-                    
+
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
+        <h1>Active Services</h1>
       </div>
     </div>
   );
