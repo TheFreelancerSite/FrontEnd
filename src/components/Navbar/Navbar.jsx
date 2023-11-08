@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./Navbar.scss";
 import { logout } from "../../services/api.service";
 import { useSelector } from "react-redux";
@@ -9,8 +9,12 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
 const user = useSelector((state) => state.user.value.isSeller)
-const userId = useSelector((state) => state.user.value.userId)
+const userId =useSelector((state)=>state.user.value.userId)
 
+// const userId = useSelector((state) => state.user.value.userId)
+// const userId = localStorage.getItem("userId")
+
+console.log(userId);
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
@@ -33,8 +37,9 @@ const userId = useSelector((state) => state.user.value.userId)
     username: localStorage.getItem("username"),
     isSeller: localStorage.getItem("role"),
     img: localStorage.getItem("imgUrl"),
+    userId: localStorage.getItem("userId")
   };
-console.log(currentUser.isSeller);
+// console.log(currentUser.use);
   return (
     <div className={active && pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">

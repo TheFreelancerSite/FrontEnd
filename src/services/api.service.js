@@ -29,7 +29,7 @@ export const logout =  () => {
   return localStorage.clear()
   }
 
-  
+
   export const getUser = async (userId) => {
     try {
       const response = await axios.get(`${API_URL}/user/getUser/${userId}`);

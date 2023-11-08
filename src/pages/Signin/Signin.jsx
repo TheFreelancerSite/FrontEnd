@@ -30,6 +30,7 @@ export default function Signin() {
       localStorage.setItem("token", response.token);
       localStorage.setItem("role", response.payload.isSeller);
       localStorage.setItem("imgUrl", response.payload.imgUrl);
+      localStorage.setItem("userId  ", response.payload.userId);
       // dispatch(addUser({
       //   token : response.token,
       //   isSeller : response.payload.isSeller,

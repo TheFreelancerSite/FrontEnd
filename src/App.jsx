@@ -14,6 +14,7 @@ import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
 import Profile from './Pages/Profile/Profile';
+import user from './components/feautures/user';
 
 
 
@@ -27,6 +28,7 @@ function App() {
       </div>
     );
   };
+  const userId = localStorage.getItem("userId")
   const router = createBrowserRouter([
     {
       path: "/",
@@ -81,7 +83,7 @@ function App() {
           element:<UserApplicants /> 
         },
         {
-          path:"/profil",
+          path:`/profil/:userId`,
           element:<Profile /> 
         },
 
