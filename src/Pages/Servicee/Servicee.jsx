@@ -5,6 +5,8 @@ import axios from 'axios'
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import toast, { Toaster } from 'react-hot-toast';
+
 function Servicee() {
   const user =useSelector((state)=>state.user.value)
   const { id } = useParams();
@@ -16,6 +18,7 @@ function Servicee() {
         .then((response) => {
           console.log("Response from getUserNameOfService:", response.data);
           setPostUser(response.data);
+          console.log("this is the postUser ",postUser)
         })
         .catch((error) => {
           console.error("Error in getUserNameOfService:", error);
@@ -35,19 +38,30 @@ function Servicee() {
       axios.post(`http://localhost:3000/service/userApplyForJob/${user.userId}/${id}`)
       .then((response)=>{
         console.log(response)
+        toast(
+          "Your request was sent ",
+          {
+            duration: 4000,
+          }
+        );
       }).catch((error)=>{
         console.log(error)
+        toast.error("request failed")
       })
     }
+    const notify = () => toast('Here is your toast.');
+
   return (
+    
     <div className="gig">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="container">
         <div className="left">
           <h1>{service.title}</h1>
           <div className="user">
             <img
               className="pp"
-              src="https://accessecurity.fr/wp-content/uploads/2018/11/profil-anonyme-audition-11.jpg"
+              src={postUser.imgUrl}
               alt=""
             />
             <span>{postUser.userName}</span>
@@ -82,7 +96,7 @@ function Servicee() {
             <h2>About The Seller</h2>
             <div className="user">
               <img
-                src="https://accessecurity.fr/wp-content/uploads/2018/11/profil-anonyme-audition-11.jpg"
+                src={postUser.imgUrl}
                 alt=""
               />
               <div className="info">
@@ -270,7 +284,8 @@ function Servicee() {
               <span>{service.feautures}</span>
             </div>
           </div>
-          <button onClick={ApplyForService}>Continue</button>
+          
+          <button onClick={ApplyForService} >Continue</button>
         </div>
       </div>
     </div>

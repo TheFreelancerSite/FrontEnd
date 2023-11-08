@@ -14,17 +14,21 @@ import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
 import Profile from './Pages/Profile/Profile';
-import user from './components/feautures/user';
+import { useState } from 'react';
 
 
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };;
   const Layout = () => {
     return (
       <div className="app">
-        <Navbar />
-        <Outlet />
-        <Footer />
+        <Navbar onJoinClick={toggleModal} />
+        <Outlet />  
+        {/* <Footer /> */}
       </div>
     );
   };
@@ -36,7 +40,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <Home showModal={showModal} setShowModal={setShowModal} />,
         },
         // {
         //   path: "/servicess",
@@ -86,17 +90,18 @@ function App() {
           path:`/profil/:userId`,
           element:<Profile /> 
         },
-
+        
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+        {
+          path: "/login",
+          element: <Signin />,
+        },
       ],
     },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
-    {
-      path: "/login",
-      element: <Signin />,
-    },
+
   ]);
   
     return <RouterProvider router={router} />;

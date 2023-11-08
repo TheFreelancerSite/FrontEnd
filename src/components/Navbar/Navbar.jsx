@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+  const[openModel,setModel]=useState(false)
   const { pathname } = useLocation();
 const user = useSelector((state) => state.user.value.isSeller)
 const userId =useSelector((state)=>state.user.value.userId)
@@ -15,6 +16,10 @@ const userId =useSelector((state)=>state.user.value.userId)
 // const userId = localStorage.getItem("userId")
 
 console.log(userId);
+
+const handleJoinClick = () => {
+  setShowModal(true);
+};
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
@@ -41,6 +46,7 @@ console.log(userId);
   };
 // console.log(currentUser.use);
   return (
+    
     <div className={active && pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
@@ -80,7 +86,7 @@ console.log(userId);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to={`/profil/${userId}`}>
+                  <Link className="link" to={`/profil/${currentUser.userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
@@ -99,7 +105,7 @@ console.log(userId);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to={`/profil/${userId}`}>
+                  <Link className="link" to={`/profil/${currentUser.userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
@@ -115,7 +121,7 @@ console.log(userId);
                 <span>Sign in</span>
               </Link>
               <Link className="link" to="/signup">
-                <button>Join</button>
+                <button >Join</button>
               </Link>
             </>
           )}

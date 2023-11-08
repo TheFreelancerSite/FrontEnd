@@ -12,14 +12,26 @@ import workImg from "../../assets/work.png";
 import CarouselImage from "./CarouselImage";
 import Carousel from "react-bootstrap/Carousel";
 import { useState } from "react";
+import Signup from "../Signup/Signup";
 
-function Home() {
+function Home(props) {
+  const showModal = props.showModal;
+  console.log("from home " ,  showModal)
   const [index, setIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
   return (
+    
     <div className="home">
       {/* <Featured />
       <TrustedBy />
@@ -28,6 +40,7 @@ function Home() {
           <CatCard key={card.id} card={card} />
         ))}
       </Slide> */}
+       {showModal && (<Signup />)}
       <div className="features">
         <div className="container">
           <div className="item">

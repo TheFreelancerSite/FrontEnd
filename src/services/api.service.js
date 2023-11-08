@@ -5,6 +5,7 @@ const API_URL = "http://localhost:3000";
 export const register = async (userData) => {
   try {
     const response = await axios.post(API_URL+"/user/signup", userData);
+    console.log(response.data , "im heeere");
     return response.data;
   } catch (error) {
     console.error("Error signing up:", error);
