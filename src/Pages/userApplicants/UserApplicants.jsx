@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import ApplicantDetails from '../ApplicantDetails/ApplicantDetails';
+import Tabs from '../../components/Tabs/Tabs';
 function UserApplicants() {
 
     const user = useSelector((state) => state.user.value);
     const [applicants,setApplicants]=useState([])
     const { serviceId } = useParams(); 
+    
     useEffect(()=>{
         axios.get(`http://localhost:3000/service/usersPending/${serviceId}`)
         .then((response)=>{
@@ -16,24 +18,27 @@ function UserApplicants() {
             console.log(response.data)
         })
     },[])
+
+
   return (
-    <div>
+    <div  className="user-applicants-container">
+      <Tabs  serviceId={serviceId} />
       <table className="user-applicants-table">
-        <thead>
+        {/* <thead>
           <tr>
             <th>{user.isSeller?<>Freelencer</>:<>Client</>}</th>
             <th>Action</th>
           </tr>
-        </thead>
-        <tbody>
+        </thead> */}
+        {/* <tbody> */}
         {applicants.map((applicant) => (
                         <tr key={applicant.id}>
     
-                            <ApplicantDetails applicant={applicant} serviceId={serviceId} />
+                            <ApplicantDetails applicant={applicant} serviceId={serviceId}  />
                         </tr>
-                    ))}
-          {/* Add more rows as needed */}
-        </tbody>
+                    ))} 
+          
+        {/* </tbody> */}
       </table>
     </div>
   );

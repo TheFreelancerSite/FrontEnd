@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './ApplicantDetails';
+import './ApplicantDetails.scss';
 import axios from 'axios';
 
-function ApplicantDetails({ applicant ,serviceId }) {
+function ApplicantDetails({ applicant, serviceId,changeToaccept }) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -16,30 +16,37 @@ function ApplicantDetails({ applicant ,serviceId }) {
       });
   }, []);
 
-  const handleAccept =(e)=>{
-    axios.post(`http://localhost:3000/service/AcceptApply/${applicant.userId}/${serviceId}`)
-    .then((response)=>{
-        console.log(response.data)
-    }).catch((error)=>{
-        console.log(error)
-    })
+  const handleAccept = (e) => {
+    axios
+      .post(`http://localhost:3000/service/AcceptApply/${applicant.userId}/${serviceId}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
-    <>  
-        {/* here you should do a Link to redirect to the profile of the user   */}
-      <td>{user.userName}</td>
-      <td>
-        <div className="button-container">
-          <span>
-            <button onClick={handleAccept} className="accept-button">Accept</button>
-          </span>
-          <span>
-            <button className="reject-button">Reject</button>
-          </span>
+    <div className="applicant-details">
+      <div className="user-info">
+        <div className="user-icon">
+          <img className="user-image" src={user.imgUrl} alt={user.userName} />
         </div>
-      </td>
-    </>
+        <div className="user-name">
+          <p>{user.userName}</p>
+        </div>
+      </div>
+      <div className="button-container">
+        <span>
+          <button onClick={()=>{handleAccept() 
+          changeToaccept()}} className="accept-button">Accept</button>
+        </span>
+        <span>
+          <button className="reject-button">Reject</button>
+        </span>
+      </div>
+    </div>
   );
 }
 
