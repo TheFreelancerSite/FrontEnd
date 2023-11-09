@@ -40,7 +40,7 @@ const ServiceCard = ({ item }) => {
             <span>STARTING AT</span>
             <h2>
               $ {item.price}
-              <sup>99</sup>
+
             </h2>
           </div>
         </div>

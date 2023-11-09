@@ -6,12 +6,19 @@ import "./Home.scss";
 // import CatCard from "../../components/catCard/CatCard";
 // import ProjectCard from "../../components/projectCard/ProjectCard";
 // import { cards, projects } from "../../data";
-import checkImg from '../../assets/check.png'
-import landImg from '../../assets/land.svg'
-import workImg from '../../assets/work.png'
-
+import checkImg from "../../assets/check.png";
+import landImg from "../../assets/land.svg";
+import workImg from "../../assets/work.png";
+import CarouselImage from "./CarouselImage";
+import Carousel from "react-bootstrap/Carousel";
+import { useState } from "react";
 
 function Home() {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
   return (
     <div className="home">
       {/* <Featured />
@@ -24,43 +31,21 @@ function Home() {
       <div className="features">
         <div className="container">
           <div className="item">
-            <h1>A whole world of freelance talent at your fingertips</h1>
-            <div className="title">
-              <img src={checkImg} alt="" />
-              The best for every budget
-            </div>
-            <p>
-              Find high-quality services at every price point. No hourly rates,
-              just project-based pricing.
-            </p>
-            <div className="title">
-              <img src={checkImg} alt="" />
-              Quality work done quickly
-            </div>
-            <p>
-              Find the right freelancer to begin working on your project within
-              minutes.
-            </p>
-            <div className="title">
-              <img src={checkImg} alt="" />
-              Protected payments, every time
-            </div>
-            <p>
-              Always know what you'll pay upfront. Your payment isn't released
-              until you approve the work.
-            </p>
-            <div className="title">
-              <img src={checkImg} alt="" />
-              24/7 support
-            </div>
-            <p>
-              Find high-quality services at every price point. No hourly rates,
-              just project-based pricing.
-            </p>
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+              <Carousel.Item>
+                <CarouselImage text="Freelacner" subtext = "Freelancing, which is a term used to describe a career in which a person works for themselves and is hired on a project-by-project basis by different organizations, is becoming a more popular career choice." />
+              </Carousel.Item>
+              <Carousel.Item>
+                <CarouselImage text="Job Seeker" subtext = "Job seeker refers to an individual who is actively looking for an employment opportunity/job and has submitted an application to the employer."/>
+              </Carousel.Item>
+              <Carousel.Item>
+                <CarouselImage text="Service" subtext = " Freelanci has three types of accounts: Client, Freelancer, As someone who's engaged independent professionals  you already have a Client account."/>
+              </Carousel.Item>
+            </Carousel>
           </div>
-          <div className="item">
-            <img className="workimage" src={workImg}  />
-          </div>
+          {/* <div className="item">
+            <img className="workimage" src={workImg} />
+          </div> */}
         </div>
       </div>
       <div className="explore">
@@ -181,10 +166,7 @@ function Home() {
             {/* <button>Explore Freelanci Business</button> */}
           </div>
           <div className="item">
-            <img className="image"
-             src={landImg} 
-              alt=""
-            />
+            <img className="image" src={landImg} alt="" />
           </div>
         </div>
       </div>

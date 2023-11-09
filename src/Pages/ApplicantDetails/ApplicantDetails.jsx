@@ -17,7 +17,6 @@ function ApplicantDetails({ applicant ,serviceId }) {
   }, []);
 
   const handleAccept =(e)=>{
-    e.preventDefault()
     axios.post(`http://localhost:3000/service/AcceptApply/${applicant.userId}/${serviceId}`)
     .then((response)=>{
         console.log(response.data)
@@ -27,7 +26,8 @@ function ApplicantDetails({ applicant ,serviceId }) {
   }
 
   return (
-    <>
+    <>  
+        {/* here you should do a Link to redirect to the profile of the user   */}
       <td>{user.userName}</td>
       <td>
         <div className="button-container">

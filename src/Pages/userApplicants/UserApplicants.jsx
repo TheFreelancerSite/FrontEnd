@@ -28,8 +28,7 @@ function UserApplicants() {
         <tbody>
         {applicants.map((applicant) => (
                         <tr key={applicant.id}>
-                            {/* <td>{applicant.requester}</td>
-                            <td>Action for {applicant.requester}</td> */}
+    
                             <ApplicantDetails applicant={applicant} serviceId={serviceId} />
                         </tr>
                     ))}

@@ -5,15 +5,16 @@ import Footer from './components/footer/Footer';
 import Orders from './components/orders/Orders';
 import Servicess from './pages/Servicess/Servicess';
 import AddService from './pages/AddService/AddService';
-import Servicee from './pages/Servicee/Servicee';
-import MyServices from './pages/MyServices/MyServices';
-import Signup from './pages/Signup/signup'
-import Signin from './pages/Signin/Signin'
-import Home from './pages/home/Home'
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/footer/Footer'
+import Orders from './components/orders/Orders'
+import Signup from './Pages/Signup/Signup'
+import Signin from './Pages/Signin/Signin'
+import Home from './Pages/home/Home'
 import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
-
+import Profile from './Pages/Profile/Profile';
 
 
 
@@ -79,6 +80,10 @@ function App() {
         {
           path:"/applicant/:serviceId",
           element:<UserApplicants /> 
+        },
+        {
+          path:"/profil",
+          element:<Profile /> 
         },
 
       ],
