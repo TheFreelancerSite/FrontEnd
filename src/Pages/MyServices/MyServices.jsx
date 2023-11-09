@@ -52,9 +52,8 @@ function MyServices() {
                   <td>{service.createdAt.slice(0, 10)}</td>
                   <td>{service.price}</td>
                   <td>
-                    <Link to={`/edit/${service.id}`}>Edit</Link> |{" "}
-                    <Link to={`/delete/${service.id}`}>Delete</Link>|{" "}
-                    <Link to={`/applicant/${service.id}`}>See applicants</Link>
+                    <Link to={`/delete/${service.id}` } className="link">Delete</Link>|{" "}
+                    <Link to={`/applicant/${service.id}`} className="link">See applicants</Link>
 
                   </td>
                 </tr>

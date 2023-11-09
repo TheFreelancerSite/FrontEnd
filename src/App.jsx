@@ -15,7 +15,8 @@ import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
 import Profile from './Pages/Profile/Profile';
 import { useState } from 'react';
-
+import Messages from './pages/messages/Messages';
+import Message from './pages/message/Message';
 
 
 function App() {
@@ -53,14 +54,14 @@ function App() {
           path: "/orders",
           element: <Orders />,
         },
-        // {
-        //   path: "/messages",
-        //   element: <Messages />,
-        // },
-        // {
-        //   path: "/message/:id",
-        //   element: <Message />,
-        // },
+        {
+          path: "/messages",
+          element: <Messages />,
+        },
+        {
+          path: "/message/:id",
+          element: <Message />,
+        },
         {
           path: "/add",
           element: <AddService />,
