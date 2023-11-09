@@ -3,7 +3,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 // import AddService from './components/AddService/AddService';
 import Servicee from './Pages/Servicee/Servicee';
 import MyServices from './Pages/MyServices/MyServices';
-import AddService from './pages/AddService/AddService';
+import AddService from './Pages/AddService/AddService';
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/footer/Footer'
 import Orders from './components/orders/Orders'
