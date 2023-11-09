@@ -2,11 +2,8 @@ import './App.scss'
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/footer/Footer';
-import Orders from './components/orders/Orders';
 import Servicess from './pages/Servicess/Servicess';
 import AddService from './pages/AddService/AddService';
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/footer/Footer'
 import Orders from './components/orders/Orders'
 import Signup from './Pages/Signup/Signup'
 import Signin from './Pages/Signin/Signin'
@@ -15,6 +12,8 @@ import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
 import Profile from './Pages/Profile/Profile';
+import MyServices from './pages/MyServices/MyServices'
+
 
 
 
@@ -43,7 +42,7 @@ function App() {
         // },
         {
           path: "/myServices",
-          element: <MyServices />,
+          element: <MyServices/>,
         },
         {
           path: "/orders",
@@ -63,7 +62,7 @@ function App() {
         },
         {
           path: "/Servicee/:id",
-          element: <Servicee />,
+          element: <Servicess />,
         },
         {path:"/freelancerHomePage",
         element :<FreelancerHomePage />
