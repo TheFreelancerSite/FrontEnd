@@ -6,15 +6,12 @@ import { login } from "../../services/api.service";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../components/feautures/user";
-import Navbar from "../../components/Navbar/Navbar";
-import { Link } from "react-router-dom";
-
 export default function Signin() {
   const [signinData, setSigninData] = useState({
     email: "",
     password: "",
   });
- 
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,6 +27,7 @@ export default function Signin() {
       localStorage.setItem("token", response.token);
       localStorage.setItem("role", response.payload.isSeller);
       localStorage.setItem("imgUrl", response.payload.imgUrl);
+      localStorage.setItem("userId", response.payload.userId);
       // dispatch(addUser({
       //   token : response.token,
       //   isSeller : response.payload.isSeller,
@@ -51,58 +49,48 @@ export default function Signin() {
       }
       console.log("Login successful:", response);
     } catch (error) {
-      // console.log("Login failed. Please check your email and password.", error); 
-      toast.error("Login failed. Please check your email and password")
-
+      // console.log("Login failed. Please check your email and password.", error);
+      toast.error("Login failed. Please check your email and password");
     }
   };
-;
-
   return (
-    <div className="login">
-    
-      <Toaster position="top-right" reverseOrder={false} />
-      <form onSubmit={handleSubmit}>
-        <div className="left">
-        <Link to="/" className="logo">
-          <span className="text">Freelenci</span>
-          <span className="dot">.</span>
-        </Link>
-          <h1>Sign in</h1>
-          <label htmlFor="">Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="email"
-            value={signinData.email}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="" size="50">
-            Password
-          </label>
-          <input
-            name="password"
-            type="password"
-            placeholder="password"
-            value={signinData.password}
-            onChange={handleChange}
-          />
-
-          <button type="submit">Login</button>
+    <div className="signup-container">
+      <div className="signup-content">
+        <div className="title">Sign In</div>
+        <div className="content">
+          <form onSubmit={handleSubmit}>
+            <div className="input-box">
+              <span className="details">Email</span>
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={signinData.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">Password</span>
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={signinData.password}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="button">
+              <button type="submit">Login</button>
+            </div>
+          </form>
           <p>
             Don't have an account?{" "}
-            <a class="link" href="/signup">
+            <a className="link" href="/signup">
               Sign Up
             </a>
           </p>
         </div>
-        <div className="right">
-          <div>
-            <img src={Img} className="signup-image" alt="Sample image" />
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   );
 }

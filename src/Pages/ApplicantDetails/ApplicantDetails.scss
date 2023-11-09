@@ -1,26 +1,65 @@
-.applicant-button-container {
-    display: flex;
-    gap: 10px; /* Add spacing between buttons */
+.applicant-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.user-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-weight: bold;
+  margin: 0;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accept-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-bottom: 5px;
+
+  &:hover {
+    background-color: #0056b3;
   }
-  
-  .accept-button {
-    background-color: blue; /* Blue background for the "Accept" button */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+}
+
+.reject-button {
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d92222;
   }
-  
-  .reject-button {
-    background-color: red; /* Red background for the "Reject" button */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .accept-button:hover,
-  .reject-button:hover {
-    background-color: #fff; /* Change the background color on hover */
-  }
-  
+}

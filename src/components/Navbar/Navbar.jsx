@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./Navbar.scss";
 import { logout } from "../../services/api.service";
 import { useSelector } from "react-redux";
@@ -7,8 +7,19 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+  const[openModel,setModel]=useState(false)
   const { pathname } = useLocation();
 const user = useSelector((state) => state.user.value.isSeller)
+const userId =useSelector((state)=>state.user.value.userId)
+
+// const userId = useSelector((state) => state.user.value.userId)
+// const userId = localStorage.getItem("userId")
+
+console.log(userId);
+
+const handleJoinClick = () => {
+  setShowModal(true);
+};
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
@@ -31,9 +42,11 @@ const user = useSelector((state) => state.user.value.isSeller)
     username: localStorage.getItem("username"),
     isSeller: localStorage.getItem("role"),
     img: localStorage.getItem("imgUrl"),
+    userId: localStorage.getItem("userId")
   };
-console.log(currentUser.isSeller);
+// console.log(currentUser.use);
   return (
+    
     <div className={active && pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
@@ -73,7 +86,7 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to="/profil">
+                  <Link className="link" to={`/profil/${currentUser.userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
@@ -92,7 +105,7 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to="/profil">
+                  <Link className="link" to={`/profil/${currentUser.userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
@@ -108,7 +121,7 @@ console.log(currentUser.isSeller);
                 <span>Sign in</span>
               </Link>
               <Link className="link" to="/signup">
-                <button>Join</button>
+                <button >Join</button>
               </Link>
             </>
           )}
