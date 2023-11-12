@@ -1,7 +1,6 @@
 import React from "react";
 import { Link , useParams  } from "react-router-dom";
 import "./Message.scss";
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios"
 import { useState } from "react";
@@ -39,6 +38,7 @@ const Message = () => {
     .then((response)=>{
       console.log(response.data)
       setConversation([...conversation, response.data]);
+      setMessageInput("")
     }).catch((error)=>{
       console.log(error)
     })

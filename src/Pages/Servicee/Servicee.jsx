@@ -3,13 +3,13 @@ import "./Servicee.scss";
 import { useEffect } from "react";
 import axios from 'axios'
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams ,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from 'react-hot-toast';
-
 function Servicee() {
   const user =useSelector((state)=>state.user.value)
   const { id } = useParams();
+  const navigate = useNavigate(); 
   console.log("iddddddd",id)
     const[postUser,setPostUser]=useState({})
     const [service,setService]=useState({})
@@ -50,6 +50,16 @@ function Servicee() {
       })
     }
     const notify = () => toast('Here is your toast.');
+  const startConversation =(e)=>{
+    e.preventDefault()
+    axios.post(`http://localhost:3000/conversation/create/${user.userId}/${service.userId}`)
+    .then((response)=>{
+      console.log(response.data.conversation)
+      navigate(`/message/${response.data.conversation.id}/${service.userId}`);
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
 
   return (
     
@@ -109,7 +119,7 @@ function Servicee() {
                   <img src="/img/star.png" alt="" />
                   <span>5</span>
                 </div>
-                <button>Contact Me</button>
+                <button onClick={startConversation}>Contact Me</button>
               </div>
             </div>
             <div className="box">
