@@ -14,7 +14,7 @@
     justify-content: space-between;
 
     button {
-      background-color: #231aaa;
+      background-color: #0d084d;;
       color: white;
       font-weight: 500;
       border: none;
@@ -55,15 +55,26 @@
       }
 
       a {
-        color: #007bff; // Link text color
+        color: #20548d; // Link text color
         text-decoration: none; // Remove default underline
         margin-right: 10px; // Add spacing between links
 
         &:hover {
-          color: #0056b3; // Link color on hover
+          color: #ffffff; // Link color on hover
           text-decoration: underline; // Add underline on hover
         }
       }
+
+      .link{
+        border: none;
+        padding: 8px;
+        color: white;
+        font-weight: 100;
+        font-size: 18px;
+        background-color: #707072;
+        cursor: pointer;
+      }
+      
     }
 
     tr:nth-child(even) {
