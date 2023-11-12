@@ -17,7 +17,6 @@ import Profile from './Pages/Profile/Profile';
 import { useState } from 'react';
 
 
-
 function App() {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
