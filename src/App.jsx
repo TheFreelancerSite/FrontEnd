@@ -3,7 +3,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 // import AddService from './components/AddService/AddService';
 import Servicee from './Pages/Servicee/Servicee';
 import MyServices from './Pages/MyServices/MyServices';
-import AddService from './pages/AddService/AddService';
+import AddService from './Pages/AddService/AddService';
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/footer/Footer'
 import Orders from './components/orders/Orders'
@@ -15,7 +15,8 @@ import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
 import Profile from './Pages/Profile/Profile';
 import { useState } from 'react';
-
+import Messages from './pages/messages/Messages';
+import Message from './pages/message/Message';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       </div>
     );
   };
+  const userId = localStorage.getItem("userId")
   const router = createBrowserRouter([
     {
       path: "/",
@@ -53,14 +55,14 @@ function App() {
           path: "/orders",
           element: <Orders />,
         },
-        // {
-        //   path: "/messages",
-        //   element: <Messages />,
-        // },
-        // {
-        //   path: "/message/:id",
-        //   element: <Message />,
-        // },
+        {
+          path: "/messages",
+          element: <Messages />,
+        },
+        {
+          path: "/message/:id/:interactedWith",
+          element: <Message />,
+        },
         {
           path: "/add",
           element: <AddService />,
@@ -86,7 +88,7 @@ function App() {
           element:<UserApplicants /> 
         },
         {
-          path:"/profil",
+          path:`/profil/:userId`,
           element:<Profile /> 
         },
         

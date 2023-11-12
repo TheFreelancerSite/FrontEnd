@@ -1,0 +1,67 @@
+.messages {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1400px;
+    padding: 50px 0px;
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        background-color: #1dbf73;
+        color: white;
+        font-weight: 500;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    }
+
+    table {
+      width: 100%;
+      margin-top: -30px;
+
+      tr {
+        height: 100px;
+        .link{
+          font-weight: bolder;
+          background-color: none;
+        }
+        th {
+          text-align: left;
+        }
+        td {
+          padding: 10px;
+
+          &:first-child {
+            font-weight: 500;
+          }
+          
+          &:nth-child(2),
+          &:nth-child(3) {
+            color: gray;
+          }
+        }
+
+        button {
+          background-color: #1dbf73;
+          color: white;
+          padding: 10px;
+          border: none;
+          cursor: pointer;
+        }
+
+        &.active {
+          background-color: #1dbf730f;
+        }
+        .message-link{
+          color: #3f29b6;
+          // font-weight: bold;
+        }
+      }
+    }
+  }
+}
