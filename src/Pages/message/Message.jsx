@@ -1,8 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useParams  } from "react-router-dom";
 import "./Message.scss";
+import { useLocation } from "react-router-dom";
 
-const Message = () => {
+const Message = (props) => {
+  // const location = useLocation();
+  // const { conversationId, interactedWith } = location.state || {};*
+  const { id, interactedWith } = useParams();
+  const interactedWithObject = JSON.parse(decodeURIComponent(interactedWith));
+  console.log("this iss from the single messge " ,interactedWithObject)
   return (
     <div className="message">
       <div className="container">

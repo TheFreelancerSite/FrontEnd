@@ -1,78 +1,57 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Messages.scss";
+  import React from "react";
+  import { Link } from "react-router-dom";
+  import "./Messages.scss";
+  import { useSelector } from "react-redux";
+  import { useEffect } from "react";
+  import axios from 'axios';
+  import { useState } from "react";
+  import MessagesDetails from "../messagesDetails/MessagesDetails";
+  const Messages = () => {
+    const user =useSelector((state)=>state.user.value)
+  const [conversations,setConversations]=useState([])
+    useEffect(()=>{
+      axios.get(`http://localhost:3000/conversation/${user.userId}`)
+      .then((response)=>{
+        setConversations(response.data.conversations)
+        console.log(response.data.conversations)
+        console.log("thisss the conversations ", conversations)
+      }).catch((error)=>{
+        console.log(error)
+      })
 
-const Messages = () => {
-  const currentUser = {
-    id: 1,
-    username: "Anna",
-    isSeller: true,
+    },[])
+    
+    // console.log(user)
+    const currentUser = {
+      id: user.userId,
+      username: user.userName,
+      isSeller: user.isSeller,
+    };
+
+
+
+    return (
+      <div className="messages">
+        <div className="container">
+          {/* <div className="title">
+            <h1>Messages</h1>
+          </div> */}
+          <table className="message-table">
+            <tr>
+              <th className="table-header">
+                {currentUser.isSeller ? "freelancers" : "clients"}
+              </th>
+              <th className="table-header">Last Message</th>
+              <th className="table-header">Date</th>
+            </tr>
+
+            {conversations.map((conversation)=>(
+                <MessagesDetails conversation={conversation} />
+            ))} 
+          </table>
+        </div>
+      </div>
+    );
   };
 
-  const message = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-  maxime cum corporis esse aspernatur laborum dolorum? Animi
-  molestias aliquam, cum nesciunt, aut, ut quam vitae saepe repellat
-  nobis praesentium placeat.`;
-
-  return (
-    <div className="messages">
-      <div className="container">
-        {/* <div className="title">
-          <h1>Messages</h1>
-        </div> */}
-        <table className="message-table">
-          <tr>
-            <th className="table-header">
-              {currentUser.isSeller ? "Buyer" : "Seller"}
-            </th>
-            <th className="table-header">Last Message</th>
-            <th className="table-header">Date</th>
-          </tr>
-          <tr className="active">
-            <td>Charley Sharp</td>
-            <td>
-              <Link to="/message/123" className="message-link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>1 hour ago</td>
-          </tr>
-          <tr className="active">
-            <td>John Doe</td>
-            <td>
-              <Link to="/message/123" className="message-link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>2 hours ago</td>
-          </tr>
-          <tr>
-            <td>Elinor Good</td>
-            <td>
-              <Link to="/message/123" className="message-link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>1 day ago</td>
-          </tr>
-          <tr>
-            <td>Garner David </td>
-            <td>
-              <Link to="/message/123" className="message-link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>2 days ago</td>
-          </tr>
-          <tr>
-            <td>Troy Oliver</td>
-            <td>{message.substring(0, 100)}</td>
-            <td>1 week ago</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  );
-};
-
-export default Messages;
+  export default Messages;
