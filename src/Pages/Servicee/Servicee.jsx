@@ -3,13 +3,13 @@ import "./Servicee.scss";
 import { useEffect } from "react";
 import axios from 'axios'
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams ,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from 'react-hot-toast';
-
 function Servicee() {
   const user =useSelector((state)=>state.user.value)
   const { id } = useParams();
+  const navigate = useNavigate(); 
   console.log("iddddddd",id)
     const[postUser,setPostUser]=useState({})
     const [service,setService]=useState({})
@@ -50,6 +50,16 @@ function Servicee() {
       })
     }
     const notify = () => toast('Here is your toast.');
+  const startConversation =(e)=>{
+    e.preventDefault()
+    axios.post(`http://localhost:3000/conversation/create/${user.userId}/${service.userId}`)
+    .then((response)=>{
+      console.log(response.data.conversation)
+      navigate(`/message/${response.data.conversation.id}/${service.userId}`);
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
 
     
 
@@ -76,20 +86,7 @@ function Servicee() {
               <span>5</span>
             </div>
           </div>
-          {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider">
-            <img
-              src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-          </Slider> */}
+
           <h2>About This service</h2>
           <p>
             {service.description}
@@ -111,7 +108,7 @@ function Servicee() {
                   <img src="/img/star.png" alt="" />
                   <span>5</span>
                 </div>
-                <button>Contact Me</button>
+                {user.isSeller ?(<button onClick={startConversation}>Contact Me</button>) :<></>}
               </div>
             </div>
             <div className="box">
@@ -129,10 +126,7 @@ function Servicee() {
               </div>
               <hr />
               <p>
-                My name is Anna, I enjoy creating AI generated art in my spare
-                time. I have a lot of experience using the AI program and that
-                means I know what to prompt the AI with to get a great and
-                incredibly detailed result.
+               {postUser.description}
               </p>
             </div>
           </div>
