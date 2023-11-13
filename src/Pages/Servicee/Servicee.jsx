@@ -51,6 +51,8 @@ function Servicee() {
     }
     const notify = () => toast('Here is your toast.');
 
+    
+
   return (
     
     <div className="gig">
@@ -134,7 +136,7 @@ function Servicee() {
               </p>
             </div>
           </div>
-          <div className="reviews">
+          {/* <div className="reviews">
             <h2>Reviews</h2>
             <div className="item">
               <div className="user">
@@ -261,7 +263,7 @@ function Servicee() {
                 <span>No</span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="right">
           <div className="price">
