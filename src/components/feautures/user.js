@@ -8,7 +8,7 @@ export const userSlice = createSlice({
         signIn:(state,action)=> {
             state.value = action.payload
         },
-
+        
         
     }
 })

@@ -9,12 +9,13 @@ import ServiceCard from '../../components/ServiceCard/ServiceCard';
 import Search from '../../components/Search/Search';
 
 function ClientHomePage() {
-  const user =useSelector((state)=>state.user.value)
+  // const user =useSelector((state)=>state.user.value)
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
   const minRef = useRef();
   const maxRef = useRef();
   const[services,setServices]=useState([])
+  const userId = localStorage.getItem("userId")
   // const reSort = (type) => {
   //   setSort(type);
   //   setOpen(false);
@@ -25,8 +26,8 @@ function ClientHomePage() {
   //   console.log(maxRef.current.value)
   // }
   useEffect(()=>{
-    console.log(user.userId)
-    axios.get(`http://localhost:3000/service/getserviceUser/${user.userId}`)
+    console.log(userId)
+    axios.get(`http://localhost:3000/service/getserviceUser/${userId}`)
     .then((response)=>{
       console.log("what i want " ,response.data)
       setServices(response.data)

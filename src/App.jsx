@@ -18,7 +18,6 @@ import { useState } from 'react';
 import Messages from './pages/messages/Messages';
 import Message from './pages/message/Message';
 
-
 function App() {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {

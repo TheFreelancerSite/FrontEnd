@@ -18,7 +18,7 @@ const userId =useSelector((state)=>state.user.value.userId)
 // const userId = useSelector((state) => state.user.value.userId)
 // const userId = localStorage.getItem("userId")
 
-console.log(userId);
+
 
 const handleJoinClick = () => {
   setShowModal(true);
@@ -47,7 +47,7 @@ const handleJoinClick = () => {
     img: localStorage.getItem("imgUrl"),
     userId: localStorage.getItem("userId")
   };
-// console.log(currentUser.use);
+ console.log(currentUser,"test");
   return (
     
     <div className={active && pathname !== "/" ? "navbar active" : "navbar"}>
