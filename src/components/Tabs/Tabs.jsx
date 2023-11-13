@@ -16,7 +16,7 @@ function Tabs({serviceId}) {
     }).catch((error)=>{
       console.log(error)
     })
-  },[])
+  },[isthereAccepted])
 
   return (
     <div className="tabs-container">
