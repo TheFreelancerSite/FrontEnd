@@ -1,25 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./signin.scss";
 import Img from "../../assets/login-bg.png";
 import toast, { Toaster } from "react-hot-toast";
 import { login } from "../../services/api.service";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../components/feautures/user";
+import user, { signIn } from "../../components/feautures/user";
+import axios from "axios";
+
 export default function Signin() {
   const [signinData, setSigninData] = useState({
     email: "",
     password: "",
   });
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSigninData({ ...signinData, [name]: value });
   };
 
+
+const handleGoogleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    // Open the Google authentication URL in the current window
+    window.location.href = `http://localhost:3000/auth/google`;
+
+
+    dispatch(
+      signIn({
+        userId: response.payload.userId,
+        isSeller: response.payload.isSeller,
+        userName: response.payload.userName,
+        imgUrl: response.payload.imgUrl,
+      }),
+      navigate("/freelancerHomePage")
+    );
+    if (response.payload.isSeller === false) {
+      navigate("/freelancerHomePage");
+    }
+    if (response.payload.isSeller === true) {
+      navigate("/clientHomePage");
+    }
+  navigate('freelancerHomePage')
+
+  } catch (error) {
+    console.error("Google login error:", error);
+    toast.error("Google login failed. Please try again.");
+  }
+};
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -82,7 +114,32 @@ export default function Signin() {
             <div className="button">
               <button type="submit">Login</button>
             </div>
+
+           
+            <div className="with-line flex items-center">
+              <div className="flex-1 border-t border-black"></div>
+              <span className="mx-2">OR</span>
+              <div className="flex-1 border-t border-black"></div>
+            </div>
+            <div className="flex items-center justify-center">
+              <button
+                class="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+                type="submit"
+                onClick={handleGoogleLogin}
+              >
+                <img
+                  className="w-6 h-6"
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  loading="lazy"
+                  alt="google logo"
+                />
+                <span>Login with Google</span>
+              </button>
+            </div>
+          
           </form>
+       
+
           <p>
             Don't have an account?{" "}
             <a className="link" href="/signup">
