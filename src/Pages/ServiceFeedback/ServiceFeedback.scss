@@ -7,7 +7,7 @@
     text-align: center;
     margin-top: 130px;
     // height: 100vh; /* Adjust the height as needed */
-    border: 20px solid #575757; /* Add border styling */
+    border: 15px solid  #222268; /* Add border styling */
     width: 50%;
     padding: 20px;
     margin-left: 378px;
@@ -49,6 +49,20 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         resize: vertical;
+    }
+    button {
+        background-color: #231f66;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #e0a800;
+        }
     }
 }
 

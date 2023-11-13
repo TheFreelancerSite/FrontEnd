@@ -3,13 +3,15 @@ import "./ServiceFeedback.scss";
 import { FaStar } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function ServiceFeedback() {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [feedback, setFeedback] = useState('');
     const { serviceId } = useParams();
-
+    const navigate =useNavigate()
     useEffect(() => {
         rateService();
     }, [rating, serviceId]);
@@ -19,7 +21,6 @@ function ServiceFeedback() {
     };
 
     const rateService = () => {
-        // Check if the rating is not null before making the API call
         if (rating !== null) {
             axios.put(`http://localhost:3000/service/updateThestars/${serviceId}`, {
                 stars: rating
@@ -38,8 +39,23 @@ function ServiceFeedback() {
         setFeedback(e.target.value);
     };
 
+    const giveReview =(e)=>{
+        e.preventDefault()
+        axios.put(`http://localhost:3000/service/giveReview/${serviceId}`,{
+            feedback :feedback,
+        })
+        .then((response)=>{
+            console.log(response.data)
+            toast.success('thank you for submitting')
+            navigate("/myServices")
+        }).catch((error)=>{
+            console.log(error)
+        })
+
+    }
     return (
         <div className="service-feedback">
+            <Toaster position="top-center" reverseOrder={false} />
             <h1 className="rating-title">Rate the service</h1>
             <div className="star-group">
                 {[...Array(5)].map((_, index) => {
@@ -74,6 +90,7 @@ function ServiceFeedback() {
                     onChange={handleFeedbackChange}
                     placeholder="Write your feedback here..."
                 />
+                <button onClick={giveReview}>Submit</button>
             </div>
         </div>
         
