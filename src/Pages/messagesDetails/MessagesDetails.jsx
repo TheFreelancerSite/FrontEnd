@@ -31,8 +31,17 @@
     
         return (
         <>
-            <tr className="active">
-            <td>{interactedWith.userName}</td>
+            <tr >
+            <td className="active">
+                <span className='item'>
+                   <img src={interactedWith.imgUrl} alt='' />
+                </span >
+                <span className='item' >
+                  {interactedWith.userName}
+                 </span>
+
+           
+            </td>
             <td>
                 {interactedWith && interactedWith.userName && (
                     <Link to={`/message/${conversation.id}/${encodeURIComponent(JSON.stringify(interactedWith))}`} className="message-link">
