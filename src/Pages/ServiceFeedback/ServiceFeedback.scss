@@ -5,23 +5,51 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 130px;
+    // height: 100vh; /* Adjust the height as needed */
+    border: 20px solid #575757; /* Add border styling */
+    width: 50%;
+    padding: 20px;
+    margin-left: 378px;
+
+    .rating-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .star-group {
+        display: flex; 
+
+        .star-icon {
+            margin: 5px;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            display: none;
+        }
+    }
+      
+
 }
 
-.rating-title {
-    font-size: 20px;
-    margin-bottom: 10px;
+
+.feedback-container {
+    margin-top: 50px;
+    text-align: left;
+
+    label {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    
+    textarea {
+        width: 100%;
+        padding: 30px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+    }
 }
 
-.star-group {
-    display: flex; 
-}
 
-.star-icon {
-    margin: 5px;
-    cursor: pointer;
-}
-
-input[type="radio"] {
-    display: none;
-}

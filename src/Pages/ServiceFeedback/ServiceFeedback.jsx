@@ -7,6 +7,7 @@ import axios from 'axios';
 function ServiceFeedback() {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
+    const [feedback, setFeedback] = useState('');
     const { serviceId } = useParams();
 
     useEffect(() => {
@@ -31,6 +32,10 @@ function ServiceFeedback() {
                 console.log(error);
             });
         }
+    };
+
+    const handleFeedbackChange = (e) => {
+        setFeedback(e.target.value);
     };
 
     return (
@@ -58,9 +63,20 @@ function ServiceFeedback() {
                         </label>
                     );
                 })}
-                <p>Your rating is {rating} </p>
+                </div>
+                {/* <p>Your rating is {rating} </p> */}
+                <div className="feedback-container">
+                <label htmlFor="feedback">Share your feedback:</label>
+                <textarea
+                    id="feedback"
+                    name="feedback"
+                    value={feedback}
+                    onChange={handleFeedbackChange}
+                    placeholder="Write your feedback here..."
+                />
             </div>
         </div>
+        
     );
 }
 
