@@ -84,20 +84,7 @@ function Servicee() {
               <span>5</span>
             </div>
           </div>
-          {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider">
-            <img
-              src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-          </Slider> */}
+
           <h2>About This service</h2>
           <p>
             {service.description}
@@ -119,7 +106,7 @@ function Servicee() {
                   <img src="/img/star.png" alt="" />
                   <span>5</span>
                 </div>
-                <button onClick={startConversation}>Contact Me</button>
+                {user.isSeller ?(<button onClick={startConversation}>Contact Me</button>) :<></>}
               </div>
             </div>
             <div className="box">
