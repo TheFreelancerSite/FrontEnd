@@ -17,7 +17,7 @@ import Profile from './Pages/Profile/Profile';
 import { useState } from 'react';
 import Messages from './pages/messages/Messages';
 import Message from './pages/message/Message';
-
+import Test from './Pages/Profile/test';
 function App() {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
@@ -98,6 +98,10 @@ function App() {
         {
           path: "/login",
           element: <Signin />,
+        },
+        {
+          path: "/test",
+          element: <Test />,
         },
       ],
     },
