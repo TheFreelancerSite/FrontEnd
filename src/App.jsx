@@ -17,6 +17,7 @@ import Profile from './Pages/Profile/Profile';
 import { useState } from 'react';
 import Messages from './pages/messages/Messages';
 import Message from './pages/message/Message';
+import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
 
 
 function App() {
@@ -90,6 +91,10 @@ function App() {
         {
           path:`/profil/:userId`,
           element:<Profile /> 
+        },
+        {
+          path:`/serviceFeedback/:serviceId`,
+          element:<ServiceFeedback /> 
         },
         
         {
