@@ -13,12 +13,18 @@ function Servicee() {
   console.log("iddddddd",id)
     const[postUser,setPostUser]=useState({})
     const [service,setService]=useState({})
+    const [stars ,setStars]=useState(null)
+    const handelSetting =(numberStars)=>{
+       setStars(numberStars)
+    }
     useEffect(() => {
       axios.get(`http://localhost:3000/service/getUserNameOfService/${id}`)
         .then((response) => {
           console.log("Response from getUserNameOfService:", response.data);
           setPostUser(response.data);
           console.log("this is the postUser ",postUser)
+        }).then(()=>{
+          
         })
         .catch((error) => {
           console.error("Error in getUserNameOfService:", error);
@@ -32,7 +38,17 @@ function Servicee() {
         .catch((error) => {
           console.error("Error in getServiceById:", error);
         });
-    }, [id]);
+
+      axios.get(`http://localhost:3000/service/averageRatingStars/${postUser.id}`)
+      .then((response)=>{
+        console.log("this isss the number of sars " ,response.data.averageRating)
+        // setStars(response.data.averageRating)
+        handelSetting(response.data.averageRating)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+    }, [id,stars]);
 
     const ApplyForService =()=>{
       axios.post(`http://localhost:3000/service/userApplyForJob/${user.userId}/${id}`)
@@ -61,6 +77,8 @@ function Servicee() {
     })
   }
 
+
+
     
 
   return (
@@ -69,29 +87,7 @@ function Servicee() {
       <Toaster position="top-center" reverseOrder={false} />
       <div className="container">
         <div className="left">
-          <h1>{service.title}</h1>
-          <div className="user">
-            <img
-              className="pp"
-              src={postUser.imgUrl}
-              alt=""
-            />
-            <span>{postUser.userName}</span>
-            <div className="stars">
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <span>5</span>
-            </div>
-          </div>
-
-          <h2>About This service</h2>
-          <p>
-            {service.description}
-          </p>
-          <div className="seller">
+             <div className="seller">
             <h2>About The Seller</h2>
             <div className="user">
               <img
@@ -101,13 +97,16 @@ function Servicee() {
               <div className="info">
                 <span>{postUser.userName}</span>
                 <div className="stars">
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <span>5</span>
-                </div>
+                 {stars !== null &&
+                  Array.from({ length: Math.floor(stars) }, (_, index) => (
+                  <img key={index} src="/img/star.png" alt="" />
+                    ))}
+                    {stars !== null && stars % 1 !== 0 && (
+                  <img src="/img/half-star.png" alt="11" />
+  )}
+  <span>{stars}</span>
+</div>
+
                 {user.isSeller ?(<button onClick={startConversation}>Contact Me</button>) :<></>}
               </div>
             </div>
@@ -130,7 +129,7 @@ function Servicee() {
               </p>
             </div>
           </div>
-          {/* <div className="reviews">
+          <div className="reviews">
             <h2>Reviews</h2>
             <div className="item">
               <div className="user">
@@ -257,7 +256,7 @@ function Servicee() {
                 <span>No</span>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
         <div className="right">
           <div className="price">
