@@ -34,7 +34,6 @@ export default function Signup() {
         [name]: file,
       });
     } else {
-      // If the name is "registerAs", update isSeller based on the selected value
       setSignupData({
         ...signupData,
         [name]: name === "registerAs" ? value === "client" : value,
