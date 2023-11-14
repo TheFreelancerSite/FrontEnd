@@ -21,6 +21,7 @@ function FreelancerHomePage() {
   const isSeller = searchParams.get("isSeller");
   const imgUrl = searchParams.get("imgUrl");
   const userName = searchParams.get("userName");
+  const idUser = localStorage.getItem("userId")
   console.log(userId);
 
   useEffect(() => {
@@ -63,7 +64,7 @@ function FreelancerHomePage() {
   useEffect(() => {
     console.log(user.userId);
     axios
-      .get(`http://localhost:3000/service/getserviceUser/${user.userId}`)
+      .get(`http://localhost:3000/service/getserviceUser/${idUser}`)
       .then((response) => {
         console.log(response.data);
         setServices(response.data);
