@@ -8,7 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
-  const [services, setMyService] = useState("");
+  const [services, setMyService] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [isEditingImage, setIsEditingImage] = useState(false);
   const { userId } = useParams();
