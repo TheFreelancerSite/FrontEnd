@@ -9,16 +9,20 @@ function ClientHomePage() {
   const user = useSelector((state) => state.user.value);
   const [services, setServices] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/service/getserviceUser/${user.userId}`)
-      .then((response) => {
-        setServices(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [user.userId]);
+  // const apply = ()=>{
+  //   console.log(minRef.current.value)
+  //   console.log(maxRef.current.value)
+  // }
+  useEffect(()=>{
+    console.log(user.userId)
+    axios.get(`http://localhost:3000/service/getserviceUser/${user.userId}`)
+    .then((response)=>{
+      console.log("what i want " ,response.data)
+      setServices(response.data)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  },[])
 
   return (
     <>
