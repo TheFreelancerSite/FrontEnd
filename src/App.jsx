@@ -19,7 +19,6 @@ import Messages from './pages/messages/Messages';
 import Message from './pages/message/Message';
 import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
 
-
 function App() {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
@@ -93,7 +92,7 @@ function App() {
           element:<Profile /> 
         },
         {
-          path:`/serviceFeedback/:serviceId`,
+          path:`/serviceFeedback/:serviceId/:applicantId`,
           element:<ServiceFeedback /> 
         },
         
