@@ -17,11 +17,11 @@ function FeedbackDetails({review,postUser}) {
     <div className="user">
       <img
         className="pp"
-        src={review.imgUrl}
+        src={review.reviewer.imgUrl}
         alt=""
       />
       <div className="info">
-        <span>{review.userName}</span>
+        <span>{review.reviewer.userName}</span>
 
       </div>
     </div>
@@ -34,7 +34,7 @@ function FeedbackDetails({review,postUser}) {
         <span>5</span>
         </div> */}
     <p>
-       {review.serviceReviews}
+       {review.comment}
     </p>
   </div>
   )

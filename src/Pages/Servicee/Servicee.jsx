@@ -36,8 +36,8 @@ function Servicee() {
         console.log("This is the number of stars ", response3.data.averageRating);
         handelSetting(response3.data.averageRating);
 
-        const response4 =await axios.get(`http://localhost:3000/service/getAllReviewsForUser/${response1.data.id}`);
-        setReviews(response4.data)
+        const response4 =await axios.get(`http://localhost:3000/review/getReviewsByUserId/${response2.data.userId}`);
+        setReviews(response4.data.receivedReviews)
         console.log("revvvvviews",response4.data)
       } catch (error) {
         console.error("Error:", error);

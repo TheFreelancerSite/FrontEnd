@@ -29,8 +29,7 @@ const ServiceCard = ({ item }) => {
           </div>
           <p>{item.title}</p>
           <div className="star">
-            <img src="./img/star.png" alt="" />
-            <span>{item.star}</span>
+              <span>{item.star}</span>
           </div>
         </div>
         <hr />
