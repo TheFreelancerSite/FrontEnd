@@ -26,7 +26,7 @@ export default function Signup() {
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
-
+  
     if (type === "file" && files.length > 0) {
       const file = files[0];
       setSignupData({
@@ -36,15 +36,15 @@ export default function Signup() {
     } else {
       setSignupData({
         ...signupData,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: name === "registerAs" ? value === "client" : value,
       });
     }
-
+  
     if (name === "email") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       setErrorMsgEmail(emailRegex.test(value) ? "" : "Invalid email format");
     }
-
+  
     if (name === "password") {
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
       setErrorMsgPassword(
@@ -53,7 +53,7 @@ export default function Signup() {
           : "Password should have a minimum of 8 characters, at least one letter, and one number"
       );
     }
-
+  
     if (name === "confirmPassword") {
       setConfirmPassword(value);
       setErrorMsgConfirmPassword(

@@ -66,7 +66,7 @@ function FreelancerHomePage() {
     axios
       .get(`http://localhost:3000/service/getserviceUser/${idUser}`)
       .then((response) => {
-        console.log(response.data);
+        console.log("this is servicess ", response.data);
         setServices(response.data);
       })
       .catch((error) => {

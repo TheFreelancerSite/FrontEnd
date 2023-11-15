@@ -92,7 +92,7 @@ function App() {
           element:<Profile /> 
         },
         {
-          path:`/serviceFeedback/:serviceId`,
+          path:`/serviceFeedback/:serviceId/:applicantId`,
           element:<ServiceFeedback /> 
         },
         

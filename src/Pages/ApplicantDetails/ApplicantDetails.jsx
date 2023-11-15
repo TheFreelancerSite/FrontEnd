@@ -51,7 +51,7 @@ console.log(applicant,"fromdetails");
       axios.put(`http://localhost:3000/service/validatingService/${applicant.userId}/${serviceId}`)
       .then((response)=>{
         console.log(response.data)
-        navigate(`/serviceFeedback/${serviceId}`)
+        navigate(`/serviceFeedback/${serviceId}/${applicant.userId}`)
       })
       .catch((error)=>{
         console.log(error)
