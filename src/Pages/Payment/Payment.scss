@@ -1,0 +1,35 @@
+// Payment.scss
+.big-container{
+    margin: 0;
+    padding: 0;
+    font-family: 'Your Chosen Font', sans-serif; /* Add your preferred font-family */
+    background-image: url('https://d12oja0ew7x0i8.cloudfront.net/images/news/ImageForNews_60434_16684422066092818.jpg'); /* Replace 'your-background-image.jpg' with the actual image file path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: auto;
+    .container {
+        text-align: center;
+        padding: 20px;
+      }
+      
+      h1 {
+        color: #ffffff;
+      }
+      
+      .amount {
+        border: 2px solid; /* Add the border style (e.g., solid) and color if needed */
+        width: 300px;
+        height: 40px;
+      }
+      .text {
+        margin-right: 250px;
+      }
+
+}
+      /* 
+    
+}
+Add any additional styling you want for the payment container */
+  

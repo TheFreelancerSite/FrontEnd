@@ -8,7 +8,9 @@ import signupReducer from './components/feautures/signup.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css"
+import { Elements } from '@stripe/react-stripe-js';
 
+const STRIPE_KEY='pk_test_51OD5wrASPyD5fiiJWseGxeKC1CyWAVuQNhMlZ9jd7s4b718VDVQ6Sbeeosf8hGgQsAcXaZkatGx8iHmnkTrt7oqk00mKYeqGl5'
 
 const store = configureStore({
   reducer:{
@@ -20,7 +22,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   
   <React.StrictMode>
      <Provider store={store}>
-     <App />
+      {/* <Elements publishableKey={STRIPE_KEY} > */}
+          <App />
+      {/* </Elements> */}
+     
      </Provider>
     
   </React.StrictMode>,

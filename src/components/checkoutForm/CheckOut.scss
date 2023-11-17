@@ -1,0 +1,35 @@
+// CheckOut.scss
+
+#payment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin: auto;
+  }
+  
+  button {
+    background-color: #61dafb; /* Blue color, you can change this */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: #4fa3d1; /* Slightly darker blue on hover */
+    }
+  }
+  
+  #button-text {
+    display: inline-block;
+  }
+  
+  #payment-message {
+    margin-top: 20px;
+    color: #ff0000;
+    font-size: 14px;
+  }
+  
