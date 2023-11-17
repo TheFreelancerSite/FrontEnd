@@ -2,42 +2,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  width: 50%;
-  margin-top: 20px; /* Adjust the top margin as needed */
-  margin-bottom: 20px; /* Adjust the bottom margin as needed */
- 
-}
-.user-applicants-table {
-    width: 80%;
+  margin: 20px auto;
+  max-width: 800px;
+
+  .user-applicants-table {
+    width: 100%;
     border-collapse: collapse;
-    margin: 80px auto; /* Set margin to center the table */
-    margin-bottom: 500px;
-  
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+    th,
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
     }
-  
+
     th {
       background-color: #007bff;
       color: white;
     }
-  
+
     tr:nth-child(even) {
       background-color: #f2f2f2;
     }
-  
+
     tr:hover {
       background-color: #e0e0e0;
     }
-  
-    td {
-      text-align: center;
-    }
-  
-    td:nth-child(1) {
-      border-right: 1px solid #ccc; /* Add right border to separate columns */
-    }
   }
-  
+}

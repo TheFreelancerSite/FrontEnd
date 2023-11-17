@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 90vh; /* Make the container cover the entire viewport height */
+  margin: 5px;
 }
 
 .signup-content {
@@ -12,11 +13,12 @@
   border: none; /* Remove the border */
   border-radius: 5px;
   text-align: center;
-
+  margin-top: 100px;
   .title {
     font-size: 25px;
     font-weight: 500;
     position: relative;
+    margin: 5px;
 
     &::before {
       content: '';
@@ -80,7 +82,7 @@
         display: flex;
         justify-content: left; /* Center the button horizontally within its container */
         align-items: center; /* Center the button vertically within its container */
-        margin-top: 20px; /* Add some top margin to separate from the previous fields */
+        // margin-top: 20px; /* Add some top margin to separate from the previous fields */
        
       }
       
@@ -95,7 +97,8 @@
         letter-spacing: 1px;
         cursor: pointer;
         transition: all 0.3s ease;
-        background: #0d084d
+        background: #0d084d ;
+        padding: 10px;
       
         // &:hover {
         //   background: linear-gradient(-135deg, #71b7e6, #9b59b6);

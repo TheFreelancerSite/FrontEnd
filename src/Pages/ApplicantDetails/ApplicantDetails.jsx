@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './ApplicantDetails.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-function ApplicantDetails({ applicant, serviceId}) {
+import { useSelector } from "react-redux";
+
+function ApplicantDetails({ applicant, serviceId,success}) {
+  const userr = useSelector((state) => state.user.value);
+
   const [user, setUser] = useState({});
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isValidate ,setIsValidate]=useState(false)
+  const [reload, setReload] = useState(false); // Add reload state
+
   const navigate = useNavigate();
 console.log(applicant,"fromdetails");
   useEffect(() => {
@@ -26,14 +32,16 @@ console.log(applicant,"fromdetails");
     // }).catch((error)=>{
     //   console.log(error)
     // })
-  }, []);
+  }, [reload]);
 
   const handleAccept = (e) => {
     axios
       .post(`http://localhost:3000/service/AcceptApply/${applicant.userId}/${serviceId}`)
       .then((response) => {
         console.log(response.data);
-        
+        setReload(true);
+        window.location.reload();
+
       })
       .catch((error) => {
         console.log(error);
@@ -72,16 +80,20 @@ console.log(applicant,"fromdetails");
           <p>{user.userName}</p>
         </div>
       </div>
-      {applicant.user_service_status ==="pending"? (
+      {applicant.user_service_status ==="pending" ? (
               <div className="button-container">
               <span>
-                <button onClick={()=>{handleAccept()}} className="accept-button">Accept</button>
+                {/* once he clicks on the accept button the client should pay */}
+                {success ? (handleAccept()):( <button onClick={()=>{userr.isSeller ? navigate(`/Payment/${userr.userId}/${applicant.id}/${serviceId}`):navigate(`/Payment/${applicant.id}/${userr.id}/${serviceId}`)}} className="accept-button">Accept</button>)}
+                
+               
+
               </span>
               <span>
                 <button className="reject-button">Reject</button>
               </span>
             </div>
-      ) :(applicant.isCompleted ?<>validated</>:(<button className='accept-button' onClick={Validating} >validate</button>)) }
+      ) :(applicant.isCompleted ?<>validated</>:(<button className='accept-button .validate-button' onClick={Validating} >validate</button>)) }
 
 {showConfirmation && (
         <div className="popup-container">

@@ -283,8 +283,8 @@ function Servicee() {
               <span>{service.feautures}</span>
             </div>
           </div>
-
-          <button onClick={ApplyForService}>Continue</button>
+          
+          <button onClick={ApplyForService} >Apply</button>
         </div>
       </div>
     </div>
