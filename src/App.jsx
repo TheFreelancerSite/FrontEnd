@@ -18,9 +18,16 @@ import { useState } from 'react';
 import Messages from './pages/messages/Messages';
 import Message from './pages/message/Message';
 import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
+import Payment from './pages/Payment/Payment';
+import Completion from './components/completion/Completion';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const[success,setSuccess]=useState(false)
+
+  const handleSuccess =()=>{
+    setSuccess(true)
+  }
   const toggleModal = () => {
     setShowModal(!showModal);
   };;
@@ -85,7 +92,7 @@ function App() {
         },
         {
           path:"/applicant/:serviceId",
-          element:<UserApplicants /> 
+          element:<UserApplicants success={success} /> 
         },
         {
           path:`/profil/:userId`,
@@ -95,7 +102,14 @@ function App() {
           path:`/serviceFeedback/:serviceId/:applicantId`,
           element:<ServiceFeedback /> 
         },
-        
+        {
+          path:`/Payment/:clientId/:freelancerId/:serviceId`,
+          element:<Payment /> 
+        },
+        {
+          path :`completion/:clientId/:freelancerId/:serviceId`,
+          element:<Completion handleSuccess={handleSuccess} />
+        },
         {
           path: "/signup",
           element: <Signup />,
