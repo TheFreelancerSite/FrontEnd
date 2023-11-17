@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./Navbar.scss";
 import { logout } from "../../services/api.service";
 import { useSelector } from "react-redux";
-
+// import { GrNotification } from "react-icons/ai";
+import { IoIosNotifications } from 'react-icons/io';
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
   const[openModel,setModel]=useState(false)
+  const [showNotifications, setShowNotifications] = useState(false);
+
   const { pathname } = useLocation();
 const user = useSelector((state) => state.user.value.isSeller)
+const userId =useSelector((state)=>state.user.value.userId)
+
+// const userId = useSelector((state) => state.user.value.userId)
+// const userId = localStorage.getItem("userId")
+
+
 
 const handleJoinClick = () => {
   setShowModal(true);
@@ -36,8 +45,9 @@ const handleJoinClick = () => {
     username: localStorage.getItem("username"),
     isSeller: localStorage.getItem("role"),
     img: localStorage.getItem("imgUrl"),
+    userId: localStorage.getItem("userId")
   };
-console.log(currentUser.isSeller);
+ console.log(currentUser,"test");
   return (
     
     <div className={active && pathname !== "/" ? "navbar active" : "navbar"}>
@@ -58,6 +68,19 @@ console.log(currentUser.isSeller);
               <Link className="link" to="/add">
                 <li>Add New Service</li>
               </Link>
+              
+              <div className="notification-icon" onClick={() => setShowNotifications(!showNotifications)}>
+                <IoIosNotifications />
+            </div>
+            {showNotifications && (
+              <div className="notification-dropdown">
+              {/* <p>nnnn</p> */}
+               <p>Notification 1</p>
+               <p>Notification 2</p>
+              </div>
+              
+)}
+
             </>
           )}
           {currentUser.isSeller === false && currentUser.isSeller !== null && (
@@ -79,7 +102,7 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to="/profil">
+                  <Link className="link" to={`/profil/${currentUser.userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">
@@ -98,7 +121,7 @@ console.log(currentUser.isSeller);
                   <Link className="link" to="/messages">
                     <li>Messages</li>
                   </Link>
-                  <Link className="link" to="/profil">
+                  <Link className="link" to={`/profil/${currentUser.userId}`}>
                     <li>Profil</li>
                   </Link>
                   <Link className="link" to="/">

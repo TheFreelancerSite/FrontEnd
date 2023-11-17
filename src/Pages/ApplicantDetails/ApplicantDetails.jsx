@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './ApplicantDetails.scss';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 function ApplicantDetails({ applicant, serviceId}) {
   const [user, setUser] = useState({});
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isValidate ,setIsValidate]=useState(false)
+  const navigate = useNavigate();
 console.log(applicant,"fromdetails");
   useEffect(() => {
     axios
@@ -15,6 +18,14 @@ console.log(applicant,"fromdetails");
       .catch((error) => {
         console.log(error);
       });
+
+    // axios.get(`http://localhost:3000/service/isUserCompleteJob/${applicant.userId}/${serviceId}`)
+    // .then((response)=>{
+    //   setIsValidate(response.data)
+    //   console.log('i m heeeeeeeeere ' ,isValidate)
+    // }).catch((error)=>{
+    //   console.log(error)
+    // })
   }, []);
 
   const handleAccept = (e) => {
@@ -22,10 +33,33 @@ console.log(applicant,"fromdetails");
       .post(`http://localhost:3000/service/AcceptApply/${applicant.userId}/${serviceId}`)
       .then((response) => {
         console.log(response.data);
+        
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  const Validating =()=>{
+    setShowConfirmation(true);
+
+  }
+
+  const  handleConfirmation =(confirmed)=>{
+    console.log("haha")
+    if(confirmed){
+      axios.put(`http://localhost:3000/service/validatingService/${applicant.userId}/${serviceId}`)
+      .then((response)=>{
+        console.log(response.data)
+        navigate(`/serviceFeedback/${serviceId}/${applicant.userId}`)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+    }
+    else{
+      setShowConfirmation(false)
+    }
   }
 
   return (
@@ -47,7 +81,17 @@ console.log(applicant,"fromdetails");
                 <button className="reject-button">Reject</button>
               </span>
             </div>
-      ) :(<button className='accept-button'>validate</button>) }
+      ) :(applicant.isCompleted ?<>validated</>:(<button className='accept-button' onClick={Validating} >validate</button>)) }
+
+{showConfirmation && (
+        <div className="popup-container">
+          <div className="popup">
+            <p>Are you sure you want to validate this user?</p>
+            <button onClick={() => handleConfirmation(true)}>Yes</button>
+            <button onClick={() => handleConfirmation(false)}>No</button>
+          </div>
+        </div>
+      )}
 
     </div>
   );

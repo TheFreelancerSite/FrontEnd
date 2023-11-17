@@ -3,7 +3,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/footer/Footer';
 import Servicess from './pages/Servicess/Servicess';
-import AddService from './pages/AddService/AddService';
+import AddService from './Pages/AddService/AddService';
 import Orders from './components/orders/Orders'
 import Signup from './Pages/Signup/Signup'
 import Signin from './Pages/Signin/Signin'
@@ -12,11 +12,10 @@ import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
 import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
 import Profile from './Pages/Profile/Profile';
-import MyServices from './pages/MyServices/MyServices'
-
 import { useState } from 'react';
-
-
+import Messages from './pages/messages/Messages';
+import Message from './pages/message/Message';
+import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -32,6 +31,7 @@ function App() {
       </div>
     );
   };
+  const userId = localStorage.getItem("userId")
   const router = createBrowserRouter([
     {
       path: "/",
@@ -53,14 +53,14 @@ function App() {
           path: "/orders",
           element: <Orders />,
         },
-        // {
-        //   path: "/messages",
-        //   element: <Messages />,
-        // },
-        // {
-        //   path: "/message/:id",
-        //   element: <Message />,
-        // },
+        {
+          path: "/messages",
+          element: <Messages />,
+        },
+        {
+          path: "/message/:id/:interactedWith",
+          element: <Message />,
+        },
         {
           path: "/add",
           element: <AddService />,
@@ -86,8 +86,12 @@ function App() {
           element:<UserApplicants /> 
         },
         {
-          path:"/profil",
+          path:`/profil/:userId`,
           element:<Profile /> 
+        },
+        {
+          path:`/serviceFeedback/:serviceId/:applicantId`,
+          element:<ServiceFeedback /> 
         },
         
         {

@@ -13,7 +13,7 @@ const ServiceCard = ({ item }) => {
  useEffect(()=>{
     axios.get(`http://localhost:3000/service/getUserNameOfService/${item.id}`)
     .then((response)=>{
-      console.log("this is the getuser from card ",response.data)
+      console.log("this is the get user from card ",response.data)
       setPostUser(response.data)
     })
  },[])
@@ -29,8 +29,7 @@ const ServiceCard = ({ item }) => {
           </div>
           <p>{item.title}</p>
           <div className="star">
-            <img src="./img/star.png" alt="" />
-            <span>{item.star}</span>
+              <span>{item.star}</span>
           </div>
         </div>
         <hr />

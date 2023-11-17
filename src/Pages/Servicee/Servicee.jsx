@@ -3,53 +3,84 @@ import "./Servicee.scss";
 import { useEffect } from "react";
 import axios from 'axios'
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams ,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from 'react-hot-toast';
-
+import FeedbackDetails from "../FeedbackDetails/FeedbackDetails";
 function Servicee() {
-  const user =useSelector((state)=>state.user.value)
+  const user = useSelector((state) => state.user.value);
   const { id } = useParams();
-  console.log("iddddddd",id)
-    const[postUser,setPostUser]=useState({})
-    const [service,setService]=useState({})
-    useEffect(() => {
-      axios.get(`http://localhost:3000/service/getUserNameOfService/${id}`)
-        .then((response) => {
-          console.log("Response from getUserNameOfService:", response.data);
-          setPostUser(response.data);
-          console.log("this is the postUser ",postUser)
-        })
-        .catch((error) => {
-          console.error("Error in getUserNameOfService:", error);
-        });
-  
-      axios.get(`http://localhost:3000/service/getServiceById/${id}`)
-        .then((response) => {
-          console.log("Response from getServiceById:", response.data);
-          setService(response.data);
-        })
-        .catch((error) => {
-          console.error("Error in getServiceById:", error);
-        });
-    }, [id]);
+  const navigate = useNavigate();
 
-    const ApplyForService =()=>{
-      axios.post(`http://localhost:3000/service/userApplyForJob/${user.userId}/${id}`)
-      .then((response)=>{
-        console.log(response)
+  const [postUser, setPostUser] = useState([]);
+  const [service, setService] = useState([]);
+  const [stars, setStars] = useState(null);
+  const [reviews ,setReviews]=useState([])
+  const handelSetting = (numberStars) => {
+    setStars(numberStars);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response1 = await axios.get(`http://localhost:3000/service/getUserNameOfService/${id}`);
+        console.log("Response from getUserNameOfService:", response1.data);
+        setPostUser(response1.data);
+        console.log("this isss the postuser",postUser)
+        const response2 = await axios.get(`http://localhost:3000/service/getServiceById/${id}`);
+        console.log("Response from getServiceById:", response2.data);
+        setService(response2.data);
+        console.log("this is serviiiice ",service)
+
+        const response3 = await axios.get(`http://localhost:3000/service/averageRatingStars/${response1.data.id}`);
+        console.log("This is the number of stars ", response3.data.averageRating);
+        handelSetting(response3.data.averageRating);
+
+        const response4 =await axios.get(`http://localhost:3000/review/getReviewsByUserId/${response2.data.userId}`);
+        setReviews(response4.data.receivedReviews)
+        console.log("revvvvviews",response4.data)
+      } catch (error) {
+        console.error("Error:", error);
+      }
+
+
+    };
+
+    fetchData();
+  }, [id]);
+
+  const ApplyForService = () => {
+    axios.post(`http://localhost:3000/service/userApplyForJob/${user.userId}/${id}`)
+      .then((response) => {
+        console.log(response);
         toast(
           "Your request was sent ",
           {
             duration: 4000,
           }
         );
-      }).catch((error)=>{
-        console.log(error)
-        toast.error("request failed")
       })
-    }
-    const notify = () => toast('Here is your toast.');
+      .catch((error) => {
+        console.log(error);
+        toast.error("Request failed");
+      });
+  };
+
+  const startConversation = (e) => {
+    e.preventDefault();
+    axios.post(`http://localhost:3000/conversation/create/${user.userId}/${service.userId}`)
+      .then((response) => {
+        console.log(response.data.conversation);
+        navigate(`/message/${response.data.conversation.id}/${service.userId}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
+
+    
 
   return (
     
@@ -57,43 +88,8 @@ function Servicee() {
       <Toaster position="top-center" reverseOrder={false} />
       <div className="container">
         <div className="left">
-          <h1>{service.title}</h1>
-          <div className="user">
-            <img
-              className="pp"
-              src={postUser.imgUrl}
-              alt=""
-            />
-            <span>{postUser.userName}</span>
-            <div className="stars">
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <span>5</span>
-            </div>
-          </div>
-          {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider">
-            <img
-              src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <img
-              src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-          </Slider> */}
-          <h2>About This service</h2>
-          <p>
-            {service.description}
-          </p>
-          <div className="seller">
-            <h2>About The Seller</h2>
+             <div className="seller">
+            {user.isSeller ? (<h2>About The freelancer</h2>) : (<h2>About The client</h2>) }
             <div className="user">
               <img
                 src={postUser.imgUrl}
@@ -102,14 +98,22 @@ function Servicee() {
               <div className="info">
                 <span>{postUser.userName}</span>
                 <div className="stars">
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <span>5</span>
-                </div>
-                <button>Contact Me</button>
+                 {stars !== null &&
+                  Array.from({ length: Math.floor(stars) }, (_, index) => (
+                  <img key={index} src="/img/star.png" alt="00" />
+                    ))}
+                    {stars !== null && stars % 1 !== 0 && (
+                      <img
+                      className="half-star"
+                      src="/img/half-star.png"
+                      alt=""
+                      style={{ width: '19px', height: '19px' }} // Adjust the size as needed
+                    />
+  )}
+                   {/* <span>{stars}</span> */}
+               </div>
+
+                {user.isSeller ?(<button onClick={startConversation}>Contact Me</button>) :<></>}
               </div>
             </div>
             <div className="box">
@@ -127,59 +131,17 @@ function Servicee() {
               </div>
               <hr />
               <p>
-                My name is Anna, I enjoy creating AI generated art in my spare
-                time. I have a lot of experience using the AI program and that
-                means I know what to prompt the AI with to get a great and
-                incredibly detailed result.
+               {postUser.description}
               </p>
             </div>
           </div>
           <div className="reviews">
             <h2>Reviews</h2>
-            <div className="item">
-              <div className="user">
-                <img
-                  className="pp"
-                  src="https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                  alt=""
-                />
-                <div className="info">
-                  <span>Garner David</span>
-                  <div className="country">
-                    <img
-                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
-                      alt=""
-                    />
-                    <span>United States</span>
-                  </div>
-                </div>
-              </div>
-              <div className="stars">
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <span>5</span>
-              </div>
-              <p>
-                I just want to say that art_with_ai was the first, and after
-                this, the only artist Ill be using on Fiverr. Communication was
-                amazing, each and every day he sent me images that I was free to
-                request changes to. They listened, understood, and delivered
-                above and beyond my expectations. I absolutely recommend this
-                gig, and know already that Ill be using it again very very soon
-              </p>
-              <div className="helpful">
-                <span>Helpful?</span>
-                <img src="/img/like.png" alt="" />
-                <span>Yes</span>
-                <img src="/img/dislike.png" alt="" />
-                <span>No</span>
-              </div>
-            </div>
+                {reviews.map((review)=>{
+                  return <FeedbackDetails review={review}  />
+                })}
             <hr />
-            <div className="item">
+            {/* <div className="item">
               <div className="user">
                 <img
                   className="pp"
@@ -260,7 +222,7 @@ function Servicee() {
                 <img src="/img/dislike.png" alt="" />
                 <span>No</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="right">
