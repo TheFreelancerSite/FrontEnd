@@ -1,3 +1,4 @@
+import { Description } from "@mui/icons-material";
 import axios from "axios";
 
 const API_URL = "http://localhost:3000";
@@ -51,5 +52,22 @@ export const updateProfile = async (userId, userData) => {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+};
+
+export const report = async (userId, serviceId, description) => {
+  try {
+    const response = await axios.post(`${API_URL}/send/report`, {
+      userId,
+      serviceId,
+      description,
+    });
+
+    const { data } = response;
+
+    return data;
+  } catch (error) {
+    console.error("Error reporting:", error);
+    throw error; // Rethrow the error for further handling if needed
   }
 };
