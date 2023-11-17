@@ -1,25 +1,40 @@
 .myGigs {
   display: flex;
   justify-content: center;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: #555;
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
-  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 
   .title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 24px;
+      margin: 0;
+    }
 
     button {
-      background-color: #0d084d;;
+      background-color: #20548d;;
       color: white;
-      font-weight: 500;
       border: none;
-      padding: 10px;
+      padding: 12px;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #0b17c5;
+      }
     }
   }
 
@@ -30,117 +45,38 @@
 
     th,
     td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    th {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
       text-align: left;
     }
 
-    td {
-      sup {
-        font-size: 12px;
-      }
-
-      .image {
-        width: 50px;
-        height: 25px;
-        object-fit: cover;
-      }
-
-      .delete {
-        width: 20px;
-        cursor: pointer;
-      }
-
-      a {
-        color: #20548d; // Link text color
-        text-decoration: none; // Remove default underline
-        margin-right: 10px; // Add spacing between links
-
-        &:hover {
-          color: #ffffff; // Link color on hover
-          text-decoration: underline; // Add underline on hover
-        }
-      }
-
-      .link{
-        border: none;
-        padding: 8px;
-        color: white;
-        font-weight: 100;
-        font-size: 18px;
-        background-color: #707072;
-        cursor: pointer;
-      }
-      
+    th {
+      background-color: #20548d;;
+      color: white;
     }
 
     tr:nth-child(even) {
-      background-color: #1dbf730f;
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .link {
+      color: #20548d;
+      text-decoration: none;
+      margin-right: 10px;
+
+      &:hover {
+        color: #0b17c5;
+        text-decoration: underline;
+      }
     }
   }
-}
-
-/* Responsive Card Layout */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  width: calc(33.33% - 20px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .title {
-    font-size: 16px;
-    margin: 10px 0;
-  }
-
-  .price {
-    font-weight: bold;
-  }
-
-  .sales {
-    color: #666;
-    margin: 10px 0;
-  }
-}
-
-/* Media Queries for Responsive Design */
-@media (max-width: 786px) {
-  .container {
-    padding: 10px;
-  }
-
-  .card {
-    width: calc(50% - 20px);
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 5px;
-  }
-
-  .card {
-    width: 100%;
-  }
+  h1 {
+    font-size: 24px;
+    margin-right: 20px;
+    margin-top: 50px;
+  } 
 }
