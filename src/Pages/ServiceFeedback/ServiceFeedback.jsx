@@ -5,13 +5,15 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 function ServiceFeedback() {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [feedback, setFeedback] = useState('');
-    const { serviceId } = useParams();
+    const { serviceId ,applicantId } = useParams();
     const navigate =useNavigate()
+    const user = useSelector((state) => state.user.value);
     useEffect(() => {
         rateService();
     }, [rating, serviceId]);
@@ -41,8 +43,9 @@ function ServiceFeedback() {
 
     const giveReview =(e)=>{
         e.preventDefault()
-        axios.put(`http://localhost:3000/service/giveReview/${serviceId}`,{
-            feedback :feedback,
+        axios.post(`http://localhost:3000/review/addReview/${user.userId}/${applicantId}`,{
+            comment :feedback,
+            rating:rating
         })
         .then((response)=>{
             console.log(response.data)
@@ -54,6 +57,7 @@ function ServiceFeedback() {
 
     }
     return (
+        <div className='body'>
         <div className="service-feedback">
             <Toaster position="top-center" reverseOrder={false} />
             <h1 className="rating-title">Rate the service</h1>
@@ -93,7 +97,7 @@ function ServiceFeedback() {
                 <button onClick={giveReview}>Submit</button>
             </div>
         </div>
-        
+        </div>   
     );
 }
 
