@@ -5,12 +5,13 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import ApplicantDetails from '../ApplicantDetails/ApplicantDetails';
 import Tabs from '../../components/Tabs/Tabs';
-function UserApplicants() {
+function UserApplicants({success}) {
 
     const user = useSelector((state) => state.user.value);
     const [applicants,setApplicants]=useState([])
     const[acceptedApplicant,setAcceptedApplicant]=useState([])
     const { serviceId } = useParams(); 
+    
     console.log("thissss test ",acceptedApplicant );
     
     useEffect(()=>{
@@ -27,12 +28,13 @@ function UserApplicants() {
               : [response.data.userAccept];
     
             setAcceptedApplicant(userAcceptArray);
+            
           } else {
             setAcceptedApplicant([]);
           }
         });
       
-    },[applicants])
+    },[])
 
 
   return (
@@ -53,7 +55,7 @@ function UserApplicants() {
         <tbody>
           {applicants.map((applicant) => (
             <tr key={applicant.id}>
-              <ApplicantDetails applicant={applicant} serviceId={serviceId} />
+              <ApplicantDetails applicant={applicant} serviceId={serviceId} success={success} />
             </tr>
           ))}
         </tbody>

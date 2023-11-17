@@ -57,6 +57,7 @@ function ServiceFeedback() {
 
     }
     return (
+        <div className='body'>
         <div className="service-feedback">
             <Toaster position="top-center" reverseOrder={false} />
             <h1 className="rating-title">Rate the service</h1>
@@ -96,7 +97,7 @@ function ServiceFeedback() {
                 <button onClick={giveReview}>Submit</button>
             </div>
         </div>
-        
+        </div>   
     );
 }
 
