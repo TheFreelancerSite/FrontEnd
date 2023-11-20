@@ -18,7 +18,7 @@ import { useState } from 'react';
 import Messages from './pages/messages/Messages';
 import Message from './pages/message/Message';
 import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
-import Payment from './pages/Payment/Payment';
+import Payment from './Pages/Payment/Payment';
 import Completion from './components/completion/Completion';
 
 function App() {
