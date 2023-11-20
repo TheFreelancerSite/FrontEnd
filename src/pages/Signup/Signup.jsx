@@ -22,8 +22,6 @@ export default function Signup() {
   const [successMessage, setSuccessMessage] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMsgConfirmPassword, setErrorMsgConfirmPassword] = useState("");
-
-
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
   
@@ -36,7 +34,7 @@ export default function Signup() {
     } else {
       setSignupData({
         ...signupData,
-        [name]: name === "registerAs" ? value === "client" : value,
+        [name]: name === "isSeller" ? value === "freelancer" : value,
       });
     }
   
@@ -61,6 +59,8 @@ export default function Signup() {
       );
     }
   };
+  
+  
 
   const validator = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -175,30 +175,30 @@ export default function Signup() {
               </div>
 
               <div className="input-box">
-              <span className="details">Password</span>
-              <input
-                name="password"
-                type="password"
-                value={signupData.password}
-                onChange={handleChange}
-              />
-              <span className="error-msg">{errorMsgPassword}</span>
-            </div>
-            <div className="input-box">
-              <span className="details">Confirm Password</span>
-              <input
-                name="confirmPassword"
-                type="password"
-                value={confirmPassword}
-                onChange={handleChange}
-              />
-              <span className="error-msg">{errorMsgConfirmPassword}</span>
-            </div>
+                <span className="details">Password</span>
+                <input
+                  name="password"
+                  type="password"
+                  value={signupData.password}
+                  onChange={handleChange}
+                />
+                <span className="error-msg">{errorMsgPassword}</span>
+              </div>
+              <div className="input-box">
+                <span className="details">Confirm Password</span>
+                <input
+                  name="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={handleChange}
+                />
+                <span className="error-msg">{errorMsgConfirmPassword}</span>
+              </div>
               <div className="input-box">
                 <span className="details">Register as</span>
                 <select
-                  name="registerAs"
-                  value={signupData.registerAs}
+                  name="isSeller"
+                  value={signupData.isSeller ? "freelancer" : "client"}
                   onChange={handleChange}
                 >
                   <option value="freelancer">Freelancer</option>
@@ -206,7 +206,7 @@ export default function Signup() {
                 </select>
               </div>
               <div className="input-box">
-                <span className="details">Profil picture </span>
+                <span className="details">Profile picture</span>
                 <input name="image" type="file" onChange={handleChange} />
               </div>
               <div className="button">
@@ -244,6 +244,5 @@ export default function Signup() {
         </div>
       </div>
     </div>
-   
   );
 }

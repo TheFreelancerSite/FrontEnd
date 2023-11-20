@@ -24,8 +24,9 @@ function Search() {
               <div className="searchInput">
                 <img src="./img/search.png" alt="" />
                 <input
+                  className="searchInput"
                   type="text"
-                  placeholder='Try "building mobil app"'
+                  placeholder='Search a service ...."'
                   onChange={(e) => setInput(e.target.value)}
                 />
               </div>
