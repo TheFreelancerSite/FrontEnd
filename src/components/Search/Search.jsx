@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import "./Search.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-function Search() {
+function Search({ onSearch }) {
     const user =useSelector((state)=>state.user.value)
     const [input, setInput] = useState("");
-    const navigate = useNavigate();
   
     const handleSubmit = () => {
-      navigate(`/gigs?search=${input}`);
+      onSearch(input)
     };
     return (
       <div className="featured">
