@@ -17,7 +17,7 @@ const userId =useSelector((state)=>state.user.value.userId)
 
 // const userId = useSelector((state) => state.user.value.userId)
 // const userId = localStorage.getItem("userId")
-
+  
 
 
 const handleJoinClick = () => {
