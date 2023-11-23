@@ -36,7 +36,7 @@ function App() {
       <div className="app">
         <Navbar onJoinClick={toggleModal} />
         <Outlet />  
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   };
@@ -94,10 +94,7 @@ function App() {
           path:"/applicant/:serviceId",
           element:<UserApplicants success={success} /> 
         },
-        {
-          path:`/profil/:userId`,
-          element:<Profile /> 
-        },
+      
         {
           path:`/serviceFeedback/:serviceId/:applicantId`,
           element:<ServiceFeedback /> 
@@ -120,7 +117,10 @@ function App() {
         },
       ],
     },
-
+    {
+      path:`/profil/:userId`,
+      element:<Profile /> 
+    },
   ]);
   
     return <RouterProvider router={router} />;

@@ -1,78 +1,51 @@
 import React from "react";
-import "./Footer.scss";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Footer() {
+  const user = useSelector((state) => state.user.value.isSeller);
+
   return (
-    <div className="footer">
-      <div className="container">
-        <div className="top">
-          <div className="item">
-            <h2>Categories</h2>
-            <span>Graphics & Design</span>
-            <span>Digital Marketing</span>
-
+    <footer className="bg-neutral-200 dark:bg-gray-900 m-0">
+      <div className="w-full p-3 md:py-6">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <div className="text-2xl font-bold my-2 ml-4 mr-7"> 
+            <Link to={user === true ? "/clientHomePage" : user === false ? "/freelancerHomePage" : "/"}>
+              <span className="text">Freelenci</span>
+            </Link>
+            <span className="font-bold text-blue-500">.</span>
           </div>
-          <div className="item">
-            <h2>About</h2>
-            <span>Press & News</span>
-            <span>Partnerships</span>
-            <span>Privacy Policy</span>
-
-          </div>
-          <div className="item">
-            <h2>Support</h2>
-            <span>Help & Support</span>
-            <span>Trust & Safety</span>
-            <span>Selling on Liverr</span>
-            <span>Buying on Liverr</span>
-          </div>
-          <div className="item">
-            <h2>Community</h2>
-            <span>Customer Success Stories</span>
-            <span>Community hub</span>
-            <span>Forum</span>
-            <span>Events</span>
-            <span>Blog</span>
-            <span>Influencers</span>
-
-          </div>
-          <div className="item">
-            <h2>More From Fiverr</h2>
-            <span>Liverr Business</span>
-            <span>Liverr Pro</span>
-            <span>Liverr Logo Maker</span>
-            <span>Liverr Guides</span>
-            <span>Get Inspired</span>
-
-          </div>
-        </div>
-        <hr />
-        <div className="bottom">
-          <div className="left">
-            <h2>Freelenci</h2>
-            <span>Freelenci@gmail.com</span>
-          </div>
-          <div className="right">
-            <div className="social">
-              <img src="/img/twitter.png" alt="" />
-              <img src="/img/facebook.png" alt="" />
-              <img src="/img/linkedin.png" alt="" />
-              <img src="/img/pinterest.png" alt="" />
-              <img src="/img/instagram.png" alt="" />
-            </div>
-            <div className="link">
-              <img src="/img/language.png" alt="" />
-              <span>English</span>
-            </div>
-            <div className="link">
-              <img src="/img/coin.png" alt="" />
-              <span>TND</span>
-            </div>
-            <img src="/img/accessibility.png" alt="" />
-          </div>
+          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-black sm:mb-0 dark:text-gray-400">
+            <li>
+              <Link to="#" className="hover:underline me-4 md:me-6">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="#" className="hover:underline me-4 md:me-6">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="#" className="hover:underline me-4 md:me-6">
+                Licensing
+              </Link>
+            </li>
+            <li>
+              <Link to="#" className="hover:underline">
+                Contact
+              </Link>
+            </li>
+          </ul>
+          <hr className="border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <span className="block text-sm text-black sm:text-right dark:text-gray-400">
+            © 2023 <a href="https://flowbite.com/" className="hover:underline">
+              Freelanci
+            </a>. All Rights Reserved.
+          </span>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 
