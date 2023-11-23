@@ -1,11 +1,9 @@
 import './App.scss'
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-// import AddService from './components/AddService/AddService';
-import Servicee from './Pages/Servicee/Servicee';
-import MyServices from './Pages/MyServices/MyServices';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/footer/Footer';
+import Servicess from './pages/Servicess/Servicess';
 import AddService from './Pages/AddService/AddService';
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/footer/Footer'
 import Orders from './components/orders/Orders'
 import Signup from './Pages/Signup/Signup'
 import Signin from './Pages/Signin/Signin'
@@ -20,6 +18,8 @@ import Message from './pages/message/Message';
 import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
 import Payment from './Pages/Payment/Payment';
 import Completion from './components/completion/Completion';
+import MyServices from './Pages/MyServices/MyServices'
+import Servicee from './Pages/Servicee/Servicee'
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -36,7 +36,7 @@ function App() {
       <div className="app">
         <Navbar onJoinClick={toggleModal} />
         <Outlet />  
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   };
@@ -94,20 +94,17 @@ function App() {
           path:"/applicant/:serviceId",
           element:<UserApplicants success={success} /> 
         },
+      
         {
-          path:`/profil/:userId`,
-          element:<Profile /> 
-        },
-        {
-          path:`/serviceFeedback/:serviceId/:applicantId`,
+          path:'/serviceFeedback/:serviceId/:applicantId',
           element:<ServiceFeedback /> 
         },
         {
-          path:`/Payment/:clientId/:freelancerId/:serviceId`,
+          path:'/Payment/:clientId/:freelancerId/:serviceId',
           element:<Payment /> 
         },
         {
-          path :`completion/:clientId/:freelancerId/:serviceId`,
+          path :'completion/:clientId/:freelancerId/:serviceId',
           element:<Completion handleSuccess={handleSuccess} />
         },
         {
@@ -120,14 +117,17 @@ function App() {
         },
       ],
     },
-
+    {
+      path:`/profil/:userId`,
+      element:<Profile /> 
+    },
   ]);
-  
+
     return <RouterProvider router={router} />;
-  
-  
+
+
 }
-  
+
 
 
 export default App

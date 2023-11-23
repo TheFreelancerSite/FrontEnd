@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function Search({ onSearch }) {
     const user =useSelector((state)=>state.user.value)
     const [input, setInput] = useState("");
-  
+
     const handleSubmit = () => {
       onSearch(input)
     };
@@ -18,7 +18,7 @@ function Search({ onSearch }) {
             </h1>:<h1>
               Find the perfect <span>job</span> that matches your expertise.
             </h1> }
-            
+
             <div className="search">
               <div className="searchInput">
                 <img src="./img/search.png" alt="" />

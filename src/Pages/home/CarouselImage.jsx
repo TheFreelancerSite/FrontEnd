@@ -1,13 +1,31 @@
 import React from 'react';
 import workImg from '../../assets/work.png';
 
-const gradientColors = ': radial-gradient(circle, #ffffff, #e7e6f7, #cccff0, #aeb9ea, #8ba4e3, #7699e2, #5e8fe1, #3e85e0, #3480e4, #2a7be8, #2275eb, #1d6fee)';
+const baseColor = '#070644';
 
+// const gradientColors = `
+//   radial-gradient(
+//     circle,
+//     ${baseColor},
+//     #192b6b,
+//     #234ea0,
+//     #2d72d6,
+//     #83a5e6,
+//     #bcd7f7,
+//     #ffffff,
+//     #bcd7f7,
+//     #83a5e6,
+//     #2d72d6,
+//     #234ea0,
+//     #192b6b,
+//     ${baseColor}
+//   )
+// `;
 export default function CarouselImage({ text, subtext }) {
   return (
     <div
       className="relative flex flex-col items-center justify-center text-black h-96 rounded-lg overflow-hidden"
-      style={{ background: gradientColors }}
+      // style={{ background: gradientColors }}
     >
       <img src={workImg} alt={text} className="w-60 h-60 object-cover rounded-full mb-4" />
 

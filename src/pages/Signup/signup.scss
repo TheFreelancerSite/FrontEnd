@@ -4,13 +4,16 @@
   align-items: center;
   height: 90vh; /* Make the container cover the entire viewport height */
   margin: 5px;
+  background-image: url('public/img/pexels-jessica-lewis-593324.jpg'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+  background-size: cover; 
+  background-position: center; 
 }
 
 .signup-content {
   max-width: 700px;
   width: 100%;
   padding: 25px 30px;
-  border: none; /* Remove the border */
+  border: none; 
   border-radius: 5px;
   text-align: center;
   margin-top: 100px;
@@ -34,7 +37,7 @@
 
   .content {
     form {
-      background: #fff; /* Set the background to white */
+      background: #ffffff;
       border: none; /* Remove the border */
       padding: 25px 30px;
       border-radius: 5px;
