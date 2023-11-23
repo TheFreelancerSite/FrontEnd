@@ -17,7 +17,7 @@ const userId =useSelector((state)=>state.user.value.userId)
 
 // const userId = useSelector((state) => state.user.value.userId)
 // const userId = localStorage.getItem("userId")
-
+  
 
 
 const handleJoinClick = () => {
@@ -99,11 +99,11 @@ const handleJoinClick = () => {
               <span>{currentUser.username}</span>
               {open && (
                 <div className="options">
-                  <Link className="link" to="/messages">
-                    <li>Messages</li>
-                  </Link>
                   <Link className="link" to={`/profil/${currentUser.userId}`}>
                     <li>Profil</li>
+                  </Link>
+                  <Link className="link" to="/messages">
+                    <li>Messages</li>
                   </Link>
                   <Link className="link" to="/">
                     <li onClick={handlLogout}>Logout</li>
@@ -112,25 +112,7 @@ const handleJoinClick = () => {
               )}
             </div>
           )}
-          {!currentUser.isSeller && currentUser.isSeller !== null && (
-            <div className="user" onClick={() => setOpen(!open)}>
-              <img src={currentUser.img} alt="" />
-              <span>{currentUser.username}</span>
-              {open && (
-                <div className="options">
-                  <Link className="link" to="/messages">
-                    <li>Messages</li>
-                  </Link>
-                  <Link className="link" to={`/profil/${currentUser.userId}`}>
-                    <li>Profil</li>
-                  </Link>
-                  <Link className="link" to="/">
-                    <li onClick={handlLogout}>Logout</li>
-                  </Link>
-                </div>
-              )}
-            </div>
-          )}
+         
           {currentUser.isSeller === null && (
             <>
               <Link className="link" to="/login">

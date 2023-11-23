@@ -16,9 +16,10 @@ import { useState } from 'react';
 import Messages from './pages/messages/Messages';
 import Message from './pages/message/Message';
 import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
-import Payment from './pages/Payment/Payment';
+import Payment from './Pages/Payment/Payment';
 import Completion from './components/completion/Completion';
 import MyServices from './Pages/MyServices/MyServices'
+import Servicee from './Pages/Servicee/Servicee'
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -34,7 +35,7 @@ function App() {
     return (
       <div className="app">
         <Navbar onJoinClick={toggleModal} />
-        <Outlet />  
+        <Outlet />
         {/* <Footer /> */}
       </div>
     );
@@ -55,7 +56,7 @@ function App() {
         // },
         {
           path: "/myServices",
-          element: <MyServices/>,
+          element: <MyServices />,
         },
         {
           path: "/orders",
@@ -75,7 +76,7 @@ function App() {
         },
         {
           path: "/Servicee/:id",
-          element: <Servicess />,
+          element: <Servicee />,
         },
         {path:"/freelancerHomePage",
         element :<FreelancerHomePage />
@@ -94,19 +95,19 @@ function App() {
           element:<UserApplicants success={success} /> 
         },
         {
-          path:`/profil/:userId`,
+          path:'/profil/:userId',
           element:<Profile /> 
         },
         {
-          path:`/serviceFeedback/:serviceId/:applicantId`,
+          path:'/serviceFeedback/:serviceId/:applicantId',
           element:<ServiceFeedback /> 
         },
         {
-          path:`/Payment/:clientId/:freelancerId/:serviceId`,
+          path:'/Payment/:clientId/:freelancerId/:serviceId',
           element:<Payment /> 
         },
         {
-          path :`completion/:clientId/:freelancerId/:serviceId`,
+          path :'completion/:clientId/:freelancerId/:serviceId',
           element:<Completion handleSuccess={handleSuccess} />
         },
         {
@@ -121,12 +122,12 @@ function App() {
     },
 
   ]);
-  
+
     return <RouterProvider router={router} />;
-  
-  
+
+
 }
-  
+
 
 
 export default App

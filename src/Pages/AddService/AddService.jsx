@@ -43,7 +43,7 @@ const AddService = () => {
        
         formData.append('description', inputs.description);
         formData.append('deliveryTime', inputs.deliveryTime);
-        formData.append('feautures', inputs.feature1);
+        formData.append('feautures', inputs.feautures);
         formData.append('price', inputs.price);
           formData.append('owner', owner);
 
