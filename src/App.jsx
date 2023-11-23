@@ -18,6 +18,7 @@ import Message from './pages/message/Message';
 import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
 import Payment from './pages/Payment/Payment';
 import Completion from './components/completion/Completion';
+import MyServices from './Pages/MyServices/MyServices'
 
 function App() {
   const [showModal, setShowModal] = useState(false);
