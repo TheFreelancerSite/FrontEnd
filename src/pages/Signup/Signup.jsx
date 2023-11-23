@@ -24,7 +24,7 @@ export default function Signup() {
   const [errorMsgConfirmPassword, setErrorMsgConfirmPassword] = useState("");
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
-  
+
     if (type === "file" && files.length > 0) {
       const file = files[0];
       setSignupData({
@@ -37,12 +37,12 @@ export default function Signup() {
         [name]: name === "isSeller" ? value === "freelancer" : value,
       });
     }
-  
+
     if (name === "email") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       setErrorMsgEmail(emailRegex.test(value) ? "" : "Invalid email format");
     }
-  
+
     if (name === "password") {
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
       setErrorMsgPassword(
@@ -51,7 +51,7 @@ export default function Signup() {
           : "Password should have a minimum of 8 characters, at least one letter, and one number"
       );
     }
-  
+
     if (name === "confirmPassword") {
       setConfirmPassword(value);
       setErrorMsgConfirmPassword(
@@ -59,8 +59,8 @@ export default function Signup() {
       );
     }
   };
-  
-  
+
+
 
   const validator = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -128,9 +128,9 @@ export default function Signup() {
   return (
     <div className="signup-container">
       <div className="signup-content">
-        <div className="title">Registration</div>
         <div className="content">
           <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className="title">Registration</div>
             <div className="user-details">
               <div className="input-box">
                 <span className="details">Username</span>
@@ -220,27 +220,15 @@ export default function Signup() {
               <div className="flex-1 border-t border-black"></div>
             </div>
             <div className="flex items-center justify-center">
-              <button
-                class="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
-                type="submit"
-              >
-                <img
-                  className="w-6 h-6"
-                  src="https://www.svgrepo.com/show/475656/google-color.svg"
-                  loading="lazy"
-                  alt="google logo"
-                />
-                <span>Register with Google</span>
-              </button>
+           <p>
+                Already have an account?{" "}
+                <Link className="link" to="/login">
+                  Sign In
+                </Link>
+              </p>
             </div>
           </form>
 
-          <p>
-            Already have an account?{" "}
-            <Link className="link" to="/login">
-              Sign In
-            </Link>
-          </p>
         </div>
       </div>
     </div>
