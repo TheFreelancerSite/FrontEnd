@@ -7,6 +7,7 @@
     import CheckOut from '../../components/checkoutForm/CheckOut';
     import { Elements } from '@stripe/react-stripe-js';
     import { useParams } from 'react-router-dom';
+
     function Payment() {
         const [stripePromise,setStripePromise]=useState(null);
         const [amount, setAmount] = useState("")
@@ -17,6 +18,16 @@
             setAmount(event.target.value);
           };
 
+          useEffect(()=>{
+            axios.get(`http://localhost:3000/service/getServiceById/${paymentEntities.serviceId}`)
+            .then((response)=>{
+                console.log("this is use effect paymnt ", response.data)
+                setAmount(response.data.price)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+           },[])
         useEffect(()=>{
             axios.get("http://localhost:3000/payment/config")
             .then((response)=>{
@@ -41,17 +52,19 @@
             }
           }, [amount]);
 
+
+
     return (
         <div className='big-container'>
                 <div className='container'>
         <h1>Payment Element </h1>
-        <p className='text'>amount</p>
+        {/* <p className='text'>amount</p>
         <input           
          type='number'
           placeholder='Amount'
           className='amount'
           value={amount}
-          onChange={handleAmountChange}/>
+          onChange={handleAmountChange}/> */}
 
 
         {stripePromise && clientSecret && (
