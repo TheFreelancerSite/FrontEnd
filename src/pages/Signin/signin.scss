@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: center;
   height: 100vh; /* Make the container cover the entire viewport height */
+  margin: 5px;
+  background-image: url('public/img/76824.jpg'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+  background-size: cover; 
+  background-position: center; 
 }
 
 .signup-content {

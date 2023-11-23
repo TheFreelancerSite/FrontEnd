@@ -19,7 +19,7 @@ function ClientHomePage() {
   const [searchInput, setSearchInput] = useState(""); 
   useEffect(()=>{
     console.log(userId)
-    axios.get(`http://localhost:3000/service/getserviceUser/${userId}`)
+    axios.get('http://localhost:3000/service/getserviceUser/${userId}')
     .then((response)=>{
       console.log("what i want " ,response.data)
       setServices(response.data)
