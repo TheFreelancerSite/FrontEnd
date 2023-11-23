@@ -88,9 +88,9 @@ const handleGoogleLogin = async (e) => {
   return (
     <div className="signup-container">
       <div className="signup-content">
-        <div className="title">Sign In</div>
         <div className="content">
           <form onSubmit={handleSubmit}>
+        <div className="title">Sign In</div>
             <div className="input-box">
               <span className="details">Email</span>
               <input
@@ -122,30 +122,17 @@ const handleGoogleLogin = async (e) => {
               <div className="flex-1 border-t border-black"></div>
             </div>
             <div className="flex items-center justify-center">
-              <button
-                class="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
-                type="submit"
-                onClick={handleGoogleLogin}
-              >
-                <img
-                  className="w-6 h-6"
-                  src="https://www.svgrepo.com/show/475656/google-color.svg"
-                  loading="lazy"
-                  alt="google logo"
-                />
-                <span>Login with Google</span>
-              </button>
+              <p>
+                Don't have an account?{" "}
+                <a className="link" href="/signup">
+                  Sign Up
+                </a>
+              </p>
             </div>
           
           </form>
        
 
-          <p>
-            Don't have an account?{" "}
-            <a className="link" href="/signup">
-              Sign Up
-            </a>
-          </p>
         </div>
       </div>
     </div>
