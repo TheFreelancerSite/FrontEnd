@@ -20,7 +20,7 @@ const store = configureStore({
 })
 ReactDOM.createRoot(document.getElementById('root')).render(
   
-  <React.StrictMode>
+  // <React.StrictMode>
      <Provider store={store}>
       {/* <Elements publishableKey={STRIPE_KEY} > */}
           <App />
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
      
      </Provider>
     
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
