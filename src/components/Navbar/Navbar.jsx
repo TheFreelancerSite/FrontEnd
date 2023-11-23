@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import axios from "react-axios"
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./Navbar.scss";
-
+import { logout } from "../../services/api.service";
+import { useSelector } from "react-redux";
+// import { GrNotification } from "react-icons/ai";
+import { IoIosNotifications } from 'react-icons/io';
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+  const[openModel,setModel]=useState(false)
+  const [showNotifications, setShowNotifications] = useState(false);
 
-  //   const { pathname } = useLocation();
+  const { pathname } = useLocation();
+const user = useSelector((state) => state.user.value.isSeller)
+const userId =useSelector((state)=>state.user.value.userId)
 
+// const userId = useSelector((state) => state.user.value.userId)
+// const userId = localStorage.getItem("userId")
+  
+
+
+const handleJoinClick = () => {
+  setShowModal(true);
+};
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
@@ -20,101 +34,97 @@ function Navbar() {
     };
   }, []);
 
-  // const currentUser = null
-
-  const currentUser = {
-    id: 1,
-    username: "hichem sboui",
-    isFreelencer: true,
+  const handlLogout = () => {
+    try {
+      logout();
+    } catch (error) {
+      console.error(error);
+    }
   };
-
+  const currentUser = {
+    username: localStorage.getItem("username"),
+    isSeller: localStorage.getItem("role"),
+    img: localStorage.getItem("imgUrl"),
+    userId: localStorage.getItem("userId")
+  };
+ console.log(currentUser,"test");
   return (
-    <div className={active == "/" ? "navbar active" : "navbar"}>
+    
+    <div className={active && pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
-          <Link className="link" to="/">
+          
+        <Link className="link" to={user === true ? "/clientHomePage" : user === false ? "/freelancerHomePage" :user === "" ?"/" :"/"}>
             <span className="text">Freelenci</span>
           </Link>
           <span className="dot">.</span>
         </div>
         <div className="links">
-
-
-          <Link className="link" to="/add">
-            <a>Add Service</a>
-          </Link>
-          <Link  lassName="link" to="/MyServices">
-            <a>My Services</a>
-          </Link>
-          <Link className="link" to="/orders">
-            <a>Orders</a>
-          </Link>
-          {!currentUser?.isFreelencer && <span>Become a Freelencer</span>}
-          {currentUser.isFreelencer ? (
-            <div className="user" onClick={() => setOpen(!open)}>
-              <img
-                src="https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/266340950_1523239511389716_7134363116282512829_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=h32rGxJFf4oAX_03j0A&_nc_ht=scontent.ftun14-1.fna&oh=00_AfDexn53aXmH7giyGklDv1s98lLmPiZQs3z1S94sJADMZw&oe=6542240F"
-                alt=""
-              />
-              <span>{currentUser?.username}</span>
-              {open && <div className="options">
-                {currentUser.isFreelencer && (
-                  <>
-                  </>
-                )}
-                {/* <Link className="link" to="/messages"> */}
-                <li>Messages</li>
-                {/* </Link> */}
-                {/* <Link className="link" to="/"> */}
-                <li>Logout</li>
-                {/* </Link> */}
-              </div>}
-            </div>
-          ) : (
+          {!currentUser.isSeller === false&& (
             <>
-              <span>Sign in</span>
-              {/* <Link className="link" to="/register"> */}
-              <button>Join</button>
-              {/* </Link> */}
+              <Link className="link" to="/services">
+                <li>Services</li>
+              </Link>
+              <Link className="link" to="/add">
+                <li>Add New Service</li>
+              </Link>
+              
+              <div className="notification-icon" onClick={() => setShowNotifications(!showNotifications)}>
+                <IoIosNotifications />
+            </div>
+            {showNotifications && (
+              <div className="notification-dropdown">
+              {/* <p>nnnn</p> */}
+               <p>Notification 1</p>
+               <p>Notification 2</p>
+              </div>
+              
+)}
+
+            </>
+          )}
+          {currentUser.isSeller === false && currentUser.isSeller !== null && (
+            <>
+              <Link className="link" to="/services">
+                <li>freelancer</li>
+              </Link>
+              <Link className="link" to="/add">
+                <li>freelancer</li>
+              </Link>
+            </>
+          )}
+          {!currentUser.isSeller === false && (
+            <div className="user" onClick={() => setOpen(!open)}>
+              <img src={currentUser.img} alt="" />
+              <span>{currentUser.username}</span>
+              {open && (
+                <div className="options">
+                  <Link className="link" to={`/profil/${currentUser.userId}`}>
+                    <li>Profil</li>
+                  </Link>
+                  <Link className="link" to="/messages">
+                    <li>Messages</li>
+                  </Link>
+                  <Link className="link" to="/">
+                    <li onClick={handlLogout}>Logout</li>
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
+         
+          {currentUser.isSeller === null && (
+            <>
+              <Link className="link" to="/login">
+                <span>Sign in</span>
+              </Link>
+              <Link className="link" to="/signup">
+                <button >Join</button>
+              </Link>
             </>
           )}
         </div>
       </div>
-      {(active !== "/") && (
-        <>
-          <hr />
-          <div className="menu">
-            {/* <Link className="link menuLink" to="/"> */}
-            <a>Graphics & Design</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a>Video & Animation</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a>Writing & Translation</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a>AI Services</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a>Digital Marketing</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a> Music & Audio</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a>Programming & Tech</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a> Business</a>
-            {/* </Link> */}
-            {/* <Link className="link menuLink" to="/"> */}
-            <a> Lifestyle</a>
-            {/* </Link> */}
-          </div>
-          <hr />
-        </>
-      )}
     </div>
   );
 }

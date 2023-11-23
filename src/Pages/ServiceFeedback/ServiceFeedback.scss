@@ -1,0 +1,95 @@
+/* Global styles for the entire page */
+
+.body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Your Chosen Font', sans-serif; /* Add your preferred font-family */
+    background-image: url('https://t3.ftcdn.net/jpg/02/83/54/94/360_F_283549444_QJP74KROpbcvsBvohYSSJxVfFIcqr5O8.jpg'); /* Replace 'your-background-image.jpg' with the actual image file path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Styling for ServiceFeedback component */
+
+.service-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+    // border: 15px solid #222268; /* Dark purple border */
+    width: 50%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(173, 173, 173, 0.8); /* White background with transparency */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 10%;
+
+    .rating-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333; /* Dark text color */
+    }
+
+    .star-group {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+
+        .star-icon {
+            margin: 0 5px;
+            cursor: pointer;
+            color: #ffc107; /* Yellow star color */
+            transition: color 0.3s;
+
+            &:hover {
+                color: #e0a800; /* Darker yellow on hover */
+            }
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+    }
+
+    .feedback-container {
+        width: 100%;
+        text-align: left;
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333; /* Dark text color */
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 20px;
+            background-color: #fff; /* White background */
+        }
+
+        button {
+            background-color: #231f66;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: #e0a800;
+            }
+        }
+    }
+}

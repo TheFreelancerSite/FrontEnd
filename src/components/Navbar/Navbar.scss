@@ -25,13 +25,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0px;
+    padding: 0px 0px;
 
     .logo {
       font-size: 34px;
       font-weight: bold;
-
-
+      margin: 10px;
 
       .dot {
         font-weight: bold;
@@ -81,19 +80,57 @@
           color: gray;
         }
       }
+      li {
+        list-style-type: none;
+      }
 
       button {
-        color: white;
+        color: rgb(107, 46, 248);
         padding: 10px 20px;
         border-radius: 5px;
-        border: 1px solid white;
+        border: 1px solid rgb(7, 4, 4);
         background-color: transparent;
         cursor: pointer;
 
         &:hover {
-          background-color: #505BD1;
-          border-color: #505BD1;
+          background-color: #abb1f3;
+          border-color: #abb1f3;
         }
+      }
+    }
+
+    .notification-icon {
+      cursor: pointer;
+      position: relative;
+
+      // Style the notification icon as needed
+      svg {
+        font-size: 24px;
+        color: #505BD1;
+      }
+    }
+
+    .notification-dropdown {
+      position: absolute;
+      top: 70%;
+      right: 0;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      z-index: 999;
+      border: 1px solid lightgrey;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 200px;
+      font-weight: 300;
+      color: gray;
+
+      // Style the individual notification items
+      p {
+        padding: 0px;
+        // text-align: center;
+        // Add any additional styles as needed
       }
     }
   }
@@ -115,62 +152,40 @@
     font-family: "Montserrat", sans-serif;
   }
 
-
-  
-
-   
-  
-  
-
   @media (max-width: 786px) {
     .container,
-    .menu    
-     {
+    .menu {
       max-width: 786px;
     }
   }
-  
-  /* xl */
+
   @media (max-width: 1280px) {
-    .container
-    
-     {
+    .container {
       max-width: 1024px;
     }
   }
-  
-  /* lg */
+
   @media (max-width: 1024px) {
-    .container
-    {
+    .container {
       max-width: 768px;
     }
   }
-  
-  /* md */
+
   @media (max-width: 768px) {
-    .container
-    {
+    .container {
       max-width: 640px;
     }
   }
-  
-  /* sm */
+
   @media (max-width: 640px) {
-    .container
-     {
+    .container {
       max-width: 475px;
     }
   }
-  
-  /* xs */
+
   @media (max-width: 475px) {
-    .container
-    
-     {
+    .container {
       width: 100%;
     }
   }
-}
-
 }

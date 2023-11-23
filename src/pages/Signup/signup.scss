@@ -1,152 +1,166 @@
-/* Styles for the registration form */
-.register {
+.signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: url("../../assets/next.jpg") center/cover;
-}
-body{
-  margin: 0;
-  padding: 0;
-}
-
-
-.signup-image {
-  max-width: 100%;
-  height: 100%;
-  width: auto; /* This keeps the aspect ratio */
+  height: 90vh; /* Make the container cover the entire viewport height */
+  margin: 5px;
+  background-image: url('public/img/pexels-jessica-lewis-593324.jpg'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+  background-size: cover; 
+  background-position: center; 
 }
 
-form {
-  width: 60%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #000;
-  border-radius: 25px;
-  background-color: aliceblue;
-  padding-left: 20px;
-}
-
-.left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: space-between;
-}
-
-/* Common styles for labels and form inputs */
-label {
-  color: gray;
-  font-size: 18px;
-}
-
-input,
-textarea {
-  padding: 10px;
-  border: 1px solid rgb(216, 214, 214);
+.signup-content {
+  max-width: 700px;
   width: 100%;
-}
+  padding: 25px 30px;
+  border: none; 
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 100px;
+  .title {
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+    margin: 5px;
 
-button {
-  border: none;
-  padding: 10px;
-  color: white;
-  font-weight: 500;
-  font-size: 18px;
-  background-color: #171E69;
-  cursor: pointer;
-  width: 100%;
-}
-
-/* Toggle switch styles */
-.toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 24px;
-}
-
-.slider:before {
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-/* Styling for links */
-.link {
-  color: #2196f3;
-  cursor: pointer;
-}
-
-/* Responsive styles for screens with max-width 768px */
-@media (max-width: 768px) {
-  .register {
-    flex-direction: column;
-    align-items: center;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
   }
 
-  .signup-image {
+  .content {
+    form {
+      background: #ffffff;
+      border: none; /* Remove the border */
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      // margin-bottom: 80%;
+      .user-details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px 0 12px 0;
+
+        .input-box {
+          margin-bottom: 15px;
+          width: calc(100% / 2 - 20px);
+
+          span.details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+          }
+
+          input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+
+            &:focus,
+            &:valid {
+              border-color: #1f0888;
+            }
+          }
+        }
+      }
+
+      .button {
+        margin-left: 41.5%;
+        text-align: center; /* Center the button horizontally */
+        display: flex;
+        justify-content: left; /* Center the button horizontally within its container */
+        align-items: center; /* Center the button vertically within its container */
+        // margin-top: 20px; /* Add some top margin to separate from the previous fields */
+       
+      }
+      
+      .button input {
+        height: 45px;
+        width: auto; /* Remove width: 100% to allow the button to take the necessary width */
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #0d084d ;
+        padding: 10px;
+      
+        // &:hover {
+        //   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+        // }
+      }
+
+      .input-box select {
+        height: 45px;
+        width: 100%;
+        outline: none;
+        font-size: 16px;
+        border-radius: 5px;
+        padding-left: 15px;
+        border: 1px solid #ccc;
+        border-bottom-width: 2px;
+        transition: all 0.3s ease;
+      
+        &:focus,
+        &:valid {
+          border-color: #1f0888;
+        }
+      }
+      
+
+
+    }
+  }
+}
+
+@media (max-width: 584px) {
+  .signup-content {
     max-width: 100%;
-    width: auto;
-    height: auto;
-    align-self: center;
-    margin-top: 40px;
   }
 
-  form {
+  form .user-details .input-box {
+    margin-bottom: 15px;
     width: 100%;
-    margin-left: 0;
-    flex-direction: column-reverse;
-    border-radius: 0;
   }
 
-  .left {
-    align-items: center;
-    margin-left: 0;
+  form .category {
+    width: 100%;
   }
+
+  .content form .user-details {
+    max-height: 300px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+  }
+}
+
+@media (max-width: 459px) {
+  .signup-content .content .category {
+    flex-direction: column;
+  }
+}
+
+.error-msg{
+  color: red;
 }
