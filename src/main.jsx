@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import  useReducer  from './components/feautures/user.js'
 import signupReducer from './components/feautures/signup.js';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css"
 import { Elements } from '@stripe/react-stripe-js';
 
@@ -20,7 +20,7 @@ const store = configureStore({
 })
 ReactDOM.createRoot(document.getElementById('root')).render(
   
-  <React.StrictMode>
+  // <React.StrictMode>
      <Provider store={store}>
       {/* <Elements publishableKey={STRIPE_KEY} > */}
           <App />
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
      
      </Provider>
     
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
