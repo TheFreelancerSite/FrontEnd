@@ -16,24 +16,14 @@ function Footer() {
             <span className="font-bold text-blue-500">.</span>
           </div>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-black sm:mb-0 dark:text-gray-400">
-            <li>
-              <Link to="#" className="hover:underline me-4 md:me-6">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="hover:underline me-4 md:me-6">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="hover:underline me-4 md:me-6">
-                Licensing
+            <li className="mr-4">
+              <Link to="#" className="hover:underline">
+                Contact: <span className="hover:text-blue-500">7328800</span>
               </Link>
             </li>
             <li>
               <Link to="#" className="hover:underline">
-                Contact
+                Email: <a href="mailto:Freelanci@gmail.com" className="hover:text-blue-500">Freelanci@gmail.com</a>
               </Link>
             </li>
           </ul>

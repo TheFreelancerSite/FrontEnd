@@ -23,8 +23,8 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMsgConfirmPassword, setErrorMsgConfirmPassword] = useState("");
   const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
-
+    const { name, value, type, files } = e.target;
+  
     if (type === "file" && files.length > 0) {
       const file = files[0];
       setSignupData({
@@ -32,10 +32,10 @@ export default function Signup() {
         [name]: file,
       });
     } else {
-      setSignupData({
-        ...signupData,
-        [name]: name === "isSeller" ? value === "freelancer" : value,
-      });
+      setSignupData((prevData) => ({
+        ...prevData,
+        [name]: name === "isSeller" ? value === "client" : value,
+      }));
     }
 
     if (name === "email") {
@@ -198,7 +198,7 @@ export default function Signup() {
                 <span className="details">Register as</span>
                 <select
                   name="isSeller"
-                  value={signupData.isSeller ? "freelancer" : "client"}
+                  value={signupData.isSeller ? "client" : "freelancer"}
                   onChange={handleChange}
                 >
                   <option value="freelancer">Freelancer</option>
