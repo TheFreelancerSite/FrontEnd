@@ -35,7 +35,7 @@ function MessagesDetails({ conversation }) {
           <Link to={`/message/${conversation.id}/${encodeURIComponent(JSON.stringify(interactedWith))}`} className="message-link">
             {conversation.message_content
               ? conversation.message_content.substring(0, 100)
-              : 'Cannot get'}
+              : ''}
           </Link>
         )}
       </div>

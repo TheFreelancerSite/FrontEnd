@@ -5,6 +5,7 @@ import { logout } from "../../services/api.service";
 import { useSelector } from "react-redux";
 // import { GrNotification } from "react-icons/ai";
 import { IoIosNotifications } from 'react-icons/io';
+import logo from '../../assets/logo2.webp'
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
@@ -55,7 +56,8 @@ const handleJoinClick = () => {
         <div className="logo">
           
         <Link className="link" to={user === true ? "/clientHomePage" : user === false ? "/freelancerHomePage" :user === "" ?"/" :"/"}>
-            <span className="text">Freelenci</span>
+            {/* <span className="text">Freelenci</span> */}
+            <img  className="logo2" src={logo} />
           </Link>
           <span className="dot">.</span>
         </div>

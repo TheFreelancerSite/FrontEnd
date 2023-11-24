@@ -62,10 +62,7 @@ function App() {
           path: "/orders",
           element: <Orders />,
         },
-        {
-          path: "/messages",
-          element: <Messages />,
-        },
+       
         {
           path: "/message/:id/:interactedWith",
           element: <Message />,
@@ -120,6 +117,10 @@ function App() {
     {
       path:`/profil/:userId`,
       element:<Profile /> 
+    },
+    {
+      path: "/messages",
+      element: <Messages />,
     },
   ]);
 
