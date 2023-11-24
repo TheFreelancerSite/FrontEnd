@@ -47,7 +47,7 @@ function Servicee() {
         const response3 = await axios.get(
           `http://localhost:3000/review/averageRatingStars/${response1.data.id}`
         );
-        handelSetting(response3.data.averageRating);
+        handelSetting(response3.data.averageRating);  
 
         const response4 = await axios.get(
           `http://localhost:3000/review/getReviewsByUserId/${response2.data.userId}`
@@ -83,6 +83,7 @@ function Servicee() {
     axios
       .post(
         `http://localhost:3000/conversation/create/${user.userId}/${service.userId}`
+        
       )
       .then((response) => {
         console.log(response.data.conversation);
