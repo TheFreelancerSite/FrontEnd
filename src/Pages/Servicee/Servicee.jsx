@@ -83,10 +83,11 @@ function Servicee() {
     axios
       .post(
         `http://localhost:3000/conversation/create/${user.userId}/${service.userId}`
+        
       )
       .then((response) => {
         console.log(response.data.conversation);
-        navigate(`/message/${response.data.conversation.id}/${service.userId}`);
+        navigate(`/messages`);
       })
       .catch((error) => {
         console.log(error);
