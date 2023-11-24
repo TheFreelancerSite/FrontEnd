@@ -9,12 +9,12 @@ import Signup from './Pages/Signup/Signup'
 import Signin from './Pages/Signin/Signin'
 import Home from './Pages/home/Home'
 import FreelancerHomePage from './pages/FreelancerHomePage/FreelancerHomePage';
-import ClientHomePage from './pages/ClientHomePage/ClientHomePage';
+import ClientHomePage from './Pages/ClientHomePage/ClientHomePage';
 import UserApplicants from './pages/userApplicants/UserApplicants';
 import Profile from './Pages/Profile/Profile';
 import { useState } from 'react';
-import Messages from './pages/messages/Messages';
-import Message from './pages/message/Message';
+import Messages from './Pages/messages/Messages';
+import Message from './Pages/message/Message';
 import ServiceFeedback from './pages/ServiceFeedback/ServiceFeedback';
 import Payment from './Pages/Payment/Payment';
 import Completion from './components/completion/Completion';
