@@ -1,57 +1,61 @@
-  import React from "react";
-  import { Link } from "react-router-dom";
-  import "./Messages.scss";
-  import { useSelector } from "react-redux";
-  import { useEffect } from "react";
-  import axios from 'axios';
-  import { useState } from "react";
-  import MessagesDetails from "../messagesDetails/MessagesDetails";
-  const Messages = () => {
-    const user =useSelector((state)=>state.user.value)
-  const [conversations,setConversations]=useState([])
-    useEffect(()=>{
-      axios.get(`http://localhost:3000/conversation/${user.userId}`)
-      .then((response)=>{
-        setConversations(response.data.conversations)
-        console.log(response.data.conversations)
-        console.log("thisss the conversations ", conversations)
-      }).catch((error)=>{
-        console.log(error)
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import "./Messages.scss";
+import MessagesDetails from "../messagesDetails/MessagesDetails";
+import Message from '../message/Message';
+
+const Messages = () => {
+  const user = useSelector((state) => state.user.value);
+  const [conversations, setConversations] = useState([]);
+  const [selectedConversation, setSelectedConversation] = useState(null);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/conversation/${user.userId}`)
+      .then((response) => {
+        setConversations(response.data.conversations);
       })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [user.userId,selectedConversation]);
 
-    },[])
-    
-    // console.log(user)
-    const currentUser = {
-      id: user.userId,
-      username: user.userName,
-      isSeller: user.isSeller,
-    };
+  const handleUserClick = (conversation) => {
+    const idToBeSend = (user.userId === conversation.senderId) ? conversation.receiverId : conversation.senderId;
 
-
-
-    return (
-      <div className="messages">
-        <div className="container">
-          {/* <div className="title">
-            <h1>Messages</h1>
-          </div> */}
-          <table className="message-table">
-            <tr>
-              <th className="table-header">
-                {currentUser.isSeller ? "freelancers" : "clients"}
-              </th>
-              <th className="table-header">Last Message</th>
-              <th className="table-header">Date</th>
-            </tr>
-
-            {conversations.map((conversation)=>(
-                <MessagesDetails conversation={conversation} />
-            ))} 
-          </table>
-        </div>
-      </div>
-    );
+    axios.get(`http://localhost:3000/user/getUser/${idToBeSend}`)
+      .then((response) => {
+        const interactedWith = response.data;
+        setSelectedConversation({ conversationId: conversation.id, interactedWith });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
-  export default Messages;
+  return (
+    <div className="messages">
+      <div className="container">
+        <div className="columns">
+          {/* Left Column: List of Users */}
+          <div className="users-column">
+            {conversations.map((conversation) => (
+              <div key={conversation.id} onClick={() => handleUserClick(conversation)}>
+                <MessagesDetails conversation={conversation} />
+              </div>
+            ))}
+          </div>
+
+          {/* Right Column: Selected Conversation */}
+          <div className="conversation-column">
+            {selectedConversation && (
+              <Message selectedConversation={selectedConversation} />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Messages;
