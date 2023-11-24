@@ -86,7 +86,7 @@ function Servicee() {
       )
       .then((response) => {
         console.log(response.data.conversation);
-        navigate(`/message/${response.data.conversation.id}/${service.userId}`);
+        navigate(`/messages`);
       })
       .catch((error) => {
         console.log(error);
