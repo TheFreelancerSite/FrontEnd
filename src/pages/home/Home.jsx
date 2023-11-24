@@ -32,8 +32,45 @@ function Home(props) {
     slidesToScroll: 1,
     afterChange: handleAfterChange,
   };
-const gradientColors = ' radial-gradient(circle, #74a9fd, #9ab7fd, #b8c6fd, #d1d6fe, #e7e7fe, #e2e2fd, #dedcfc, #dad7fb, #bbbbf8, #98a0f5, #6c86f1, #1d6fee)';
-const downUpgradient = ' linear-gradient(to right top, #1a365d, #003a7c, #003d9a, #003db7, #0038d1, #3b45de, #5852eb, #7060f8, #9887fc, #bcafff, #ded7ff, #ffffff)';
+const baseColor = '#070644';
+
+const gradientColors = `
+  radial-gradient(
+    circle,
+    ${baseColor},
+    #192b6b,
+    #234ea0,
+    #2d72d6,
+    #83a5e6,
+    #bcd7f7,
+    #ffffff,
+    #bcd7f7,
+    #83a5e6,
+    #2d72d6,
+    #234ea0,
+    #192b6b,
+    ${baseColor}
+  )
+`;
+const downUpgradient = `
+radial-gradient(
+  circle at top right,
+  ${baseColor},
+  #192b6b,
+  #234ea0,
+  #2d72d6,
+  #83a5e6,
+  #bcd7f7,
+  #ffffff,
+  #bcd7f7,
+  #83a5e6,
+  #2d72d6,
+  #234ea0,
+  #192b6b,
+  ${baseColor}
+)
+`;
+
   return (
     <div className="home">
       {showModal && <Signup />}

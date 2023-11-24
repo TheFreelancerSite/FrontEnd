@@ -5,6 +5,7 @@ import axios from "axios";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 import { updateProfile } from "../../services/api.service";
 import EditIcon from "@mui/icons-material/Edit";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -95,6 +96,7 @@ export default function Profile() {
 
   return (
     <div>
+      <Navbar/>
       {/* <!-- End of Navbar --> */}
       <div class="container mx-auto my-5 p-5">
         <div class="md:flex no-wrap md:-mx-2 ">
@@ -118,8 +120,8 @@ export default function Profile() {
                   />
                 )}
                 {isHovered && !isEditingImage && (
-                  <span onClick={() => setIsEditingImage(true)}>
-                    <EditIcon /> <span>Edit your Photo </span>
+                  <span onClick={() => setIsEditingImage(true)} style={{ paddingLeft: '5px' }}>
+                   <EditIcon style={{ fontSize: 16 }} /> <span>Edit your Photo </span>
                   </span>
                 )}
                 {isEditingImage && (
@@ -142,8 +144,8 @@ export default function Profile() {
                 ) : (
                   <>
                     {user.userName}
-                    <span onClick={() => handleEdit("userName")}>
-                      <EditIcon />
+                    <span onClick={() => handleEdit("userName")} style={{ paddingLeft: '5px' }}>
+                    <EditIcon style={{ fontSize: 16 }} />
                     </span>
                   </>
                 )}
@@ -198,8 +200,8 @@ export default function Profile() {
                 <div class="text-center my-2">
                   <div class="px-4 py-2 font-semibold">
                     Description{" "}
-                    <span onClick={() => handleEdit("description")}>
-                      <EditIcon />
+                    <span onClick={() => handleEdit("description")} style={{ paddingLeft: '5px' }}>
+                    <EditIcon style={{ fontSize: 16 }} />
                     </span>
                   </div>
                   <div class="px-4 py-2">
@@ -257,8 +259,8 @@ export default function Profile() {
                       ) : (
                         <>
                           {user.userName}
-                          <span onClick={() => handleEdit("userName")}>
-                            <EditIcon />
+                          <span onClick={() => handleEdit("userName")}style={{ paddingLeft: '5px' }}>
+                          <EditIcon style={{ fontSize: 16 }}  />
                           </span>
                         </>
                       )}
@@ -277,8 +279,8 @@ export default function Profile() {
                       ) : (
                         <>
                           {user.phone}
-                          <span onClick={() => handleEdit("phone")}>
-                            <EditIcon />
+                          <span onClick={() => handleEdit("phone")} style={{ paddingLeft: '5px' }}>
+                          <EditIcon style={{ fontSize: 16 }} />
                           </span>
                         </>
                       )}
@@ -297,8 +299,8 @@ export default function Profile() {
                       ) : (
                         <>
                           {user.country}
-                          <span onClick={() => handleEdit("country")}>
-                            <EditIcon />
+                          <span onClick={() => handleEdit("country")} style={{ paddingLeft: '5px' }}>
+                          <EditIcon style={{ fontSize: 16 }} />
                           </span>
                         </>
                       )}
@@ -328,8 +330,8 @@ export default function Profile() {
                       ) : (
                         <>
                           {user.email}
-                          <span onClick={() => handleEdit("email")}>
-                            <EditIcon />
+                          <span onClick={() => handleEdit("email")} style={{ paddingLeft: '5px' }}>
+                          <EditIcon style={{ fontSize: 16 }} />
                           </span>
                         </>
                       )}
@@ -383,7 +385,7 @@ export default function Profile() {
                         {services.map((service) => (
                           <div
                             key={service.id}
-                            class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4"
+                            class="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 p-2"
                           >
                             {" "}
                             {/* Adjust the padding value */}

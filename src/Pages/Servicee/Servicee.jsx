@@ -105,7 +105,7 @@ function Servicee() {
       closeReportModal();
     } catch (error) {
       console.error("Error sending report:", error);
-      toast.success("Report sent successfully");
+      toast.error("Report sent not send");
     }
   };
 
