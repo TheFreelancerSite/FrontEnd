@@ -1,62 +1,46 @@
-    import React from 'react'
-    import "./MessagesDetails.scss"
-    import { useEffect } from 'react'
-    import { useState } from 'react'
-    import { Link } from 'react-router-dom'
-    import { useSelector } from "react-redux";
-    import axios from 'axios'
-    function MessagesDetails({ conversation }) {
-        const [interactedWith, setInteractedWith] = useState([]);
-        const user =useSelector((state)=>state.user.value)
-        let idToBeSend
-        console.log("this is user",user)
-        console.log("this is conversation ", conversation)
-        if (user.userId === conversation.senderId) {
-            idToBeSend = conversation.receiverId;
-        } else if (user.userId === conversation.receiverId) {
-            idToBeSend = conversation.senderId;
-        }
-        console.log(idToBeSend)
-        useEffect(() => {
-        axios
-            .get(`http://localhost:3000/user/getUser/${idToBeSend}`)
-            .then((response) => {
-            setInteractedWith(response.data);
-            console.log("oyyy", interactedWith);
-            })
-            .catch((error) => {
-            console.error(error);
-            });
-        }, [conversation.receiverId]); // Added dependency to useEffect
-    
-        return (
-        <>
-            <tr >
-            <td className="active">
-                <span className='item'>
-                   <img src={interactedWith.imgUrl} alt='' />
-                </span >
-                <span className='item' >
-                  {interactedWith.userName}
-                 </span>
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import "./MessagesDetails.scss";
+import { Link } from 'react-router-dom';
 
-           
-            </td>
-            <td>
-                {interactedWith && interactedWith.userName && (
-                    <Link to={`/message/${conversation.id}/${encodeURIComponent(JSON.stringify(interactedWith))}`} className="message-link">
+function MessagesDetails({ conversation }) {
+  const [interactedWith, setInteractedWith] = useState([]);
+  const user = useSelector((state) => state.user.value);
+  let idToBeSend;
 
-                    {conversation.message_content
-                    ? conversation.message_content.substring(0, 100)
-                    : 'Cannot get'}
-                </Link>
-                )}
-            </td>
-            <td>1 hour ago</td>
-            </tr>
-        </>
-        );
-    }
-    
+  if (user.userId === conversation.senderId) {
+    idToBeSend = conversation.receiverId;
+  } else if (user.userId === conversation.receiverId) {
+    idToBeSend = conversation.senderId;
+  }
 
-    export default MessagesDetails
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/user/getUser/${idToBeSend}`)
+      .then((response) => {
+        setInteractedWith(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [idToBeSend]);
+
+  return (
+    <div className="user-item" onClick={() => handleUserClick(conversation)}>
+      <img className="user-image" src={interactedWith.imgUrl} alt="" />
+      <div className="user-details">
+        <span className="user-name">{interactedWith.userName}</span>
+        {interactedWith && interactedWith.userName && (
+          <Link to={`/message/${conversation.id}/${encodeURIComponent(JSON.stringify(interactedWith))}`} className="message-link">
+            {conversation.message_content
+              ? conversation.message_content.substring(0, 100)
+              : 'Cannot get'}
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default MessagesDetails;
