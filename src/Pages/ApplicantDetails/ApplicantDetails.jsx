@@ -53,6 +53,22 @@ console.log(applicant,"fromdetails");
 
   }
 
+  const startConversation = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        `http://localhost:3000/conversation/create/${userr.userId}/${applicant.userId}`
+        
+      )
+      .then((response) => {
+        console.log(response.data.conversation);
+        navigate(`/messages`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const  handleConfirmation =(confirmed)=>{
     console.log("haha")
     if(confirmed){
@@ -78,6 +94,9 @@ console.log(applicant,"fromdetails");
         </div>
         <div className="user-name">
           <p>{user.userName}</p>
+        </div>
+        <div className='user-Message'>
+           <img  className="user-Message" src="../public/img/message.png" alt="oyy" onClick={startConversation} /> 
         </div>
       </div>
       {applicant.user_service_status ==="pending" ? (

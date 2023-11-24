@@ -8,6 +8,7 @@
   top: 0;
   z-index: 999;
   transition: 0.5s all ease;
+  height: 80px;
 
   &.active {
     background-color: white;
@@ -26,11 +27,16 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px 0px;
+    margin-top: 20px;
+   
 
     .logo {
       font-size: 34px;
       font-weight: bold;
       margin: 10px;
+      height: 30px;
+      align-items: center;
+      
 
       .dot {
         font-weight: bold;
@@ -187,5 +193,12 @@
     .container {
       width: 100%;
     }
+  }
+  .logo2{
+    font-size: 34px;
+    // font-weight: bold;
+    // margin: 10px;
+    height: 30px;
+    align-items: center;
   }
 }

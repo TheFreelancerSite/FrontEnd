@@ -1,152 +1,152 @@
-/* Messages.scss */
+// /* Messages.scss */
 
-.messages {
-  display: flex;
-  justify-content: center;
-  // background-color: #0a1485; /* Change to the primary blue color */
+// .messages {
+//   display: flex;
+//   justify-content: center;
+//   // background-color: #0a1485; /* Change to the primary blue color */
 
-  .container {
-    width: 100%;
-    max-width: 1400px;
-    padding: 50px 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    color: #333; /* Set text color to a dark color that contrasts well with white */
+//   .container {
+//     width: 100%;
+//     max-width: 1400px;
+//     padding: 50px 20px;
+//     background-color: #fff;
+//     border-radius: 10px;
+//     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+//     color: #333; /* Set text color to a dark color that contrasts well with white */
 
-    .columns {
-      display: flex;
+//     .columns {
+//       display: flex;
 
-      .users-column {
-        width: 280px;
-        padding-right: 20px;
-        background-color: #2530b1; /* Adjust to match the primary blue color */
-        border-radius: 10px;
+//       .users-column {
+//         width: 280px;
+//         padding-right: 20px;
+//         background-color: #2530b1; /* Adjust to match the primary blue color */
+//         border-radius: 10px;
         
-        .active {
-          display: flex;
-          flex-direction: column;
-          margin-top: 20px;
+//         .active {
+//           display: flex;
+//           flex-direction: column;
+//           margin-top: 20px;
 
-          .item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+//           .item {
+//             display: flex;
+//             align-items: center;
+//             margin-bottom: 20px;
+//             padding: 10px;
+//             border-radius: 8px;
+//             cursor: pointer;
+//             transition: background-color 0.3s ease;
 
-            &:hover {
-              background-color: #007bff; /* Change to a lighter blue on hover */
-            }
+//             &:hover {
+//               background-color: #007bff; /* Change to a lighter blue on hover */
+//             }
 
-            img {
-              width: 50px;
-              height: 50px;
-              margin-right: 10px;
-              border-radius: 50%;
-            }
+//             img {
+//               width: 50px;
+//               height: 50px;
+//               margin-right: 10px;
+//               border-radius: 50%;
+//             }
 
-            .message-link {
-              text-decoration: none;
-              color: #fff; /* Set text color to white */
-              font-weight: bold;
-              transition: color 0.3s ease;
+//             .message-link {
+//               text-decoration: none;
+//               color: #fff; /* Set text color to white */
+//               font-weight: bold;
+//               transition: color 0.3s ease;
 
-              &:hover {
-                color: #0056b3;
-              }
-            }
-          }
-        }
-      }
+//               &:hover {
+//                 color: #0056b3;
+//               }
+//             }
+//           }
+//         }
+//       }
 
-      .conversation-column {
-        width: 70%;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-top: -45px;
+//       .conversation-column {
+//         width: 70%;
+//         border-radius: 10px;
+//         overflow: hidden;
+//         margin-top: -45px;
 
-        .item {
-          display: flex;
-          gap: 10px;
-          max-width: 500px;
-          font-size: 16px;
-          align-self: flex-start;
-          padding: 10px;
-          border-radius: 8px;
-          background-color: #f0f0f0;
+//         .item {
+//           display: flex;
+//           gap: 10px;
+//           max-width: 500px;
+//           font-size: 16px;
+//           align-self: flex-start;
+//           padding: 10px;
+//           border-radius: 8px;
+//           background-color: #f0f0f0;
 
-          &.owner {
-            flex-direction: row-reverse;
-            align-self: flex-end;
+//           &.owner {
+//             flex-direction: row-reverse;
+//             align-self: flex-end;
 
-            p {
-              max-width: 400px;
-              border-radius: 20px 0px 20px 20px;
-              background-color: #007bff;
-              color: white;
-            }
-          }
+//             p {
+//               max-width: 400px;
+//               border-radius: 20px 0px 20px 20px;
+//               background-color: #007bff;
+//               color: white;
+//             }
+//           }
 
-          img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
+//           img {
+//             width: 30px;
+//             height: 30px;
+//             border-radius: 50%;
+//             object-fit: cover;
+//           }
 
-          p {
-            max-width: 400px;
-            padding: 12px;
-            border-radius: 0px 20px 20px 20px;
-            color: #333;
-            font-weight: 300;
-          }
-        }
+//           p {
+//             max-width: 400px;
+//             padding: 12px;
+//             border-radius: 0px 20px 20px 20px;
+//             color: #333;
+//             font-weight: 300;
+//           }
+//         }
 
-        hr {
-          height: 1px;
-          border: none;
-          background-color: #ddd;
-          margin-bottom: 20px;
-        }
+//         hr {
+//           height: 1px;
+//           border: none;
+//           background-color: #ddd;
+//           margin-bottom: 20px;
+//         }
 
-        .write {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+//         .write {
+//           display: flex;
+//           align-items: center;
+//           justify-content: space-between;
 
-          textarea {
-            width: 70%;
-            height: 80px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            resize: none;
-            margin-right: 10px;
-            font-size: 16px;
-            color: #333;
-          }
+//           textarea {
+//             width: 70%;
+//             height: 80px;
+//             padding: 10px;
+//             border: 1px solid #ccc;
+//             border-radius: 8px;
+//             resize: none;
+//             margin-right: 10px;
+//             font-size: 16px;
+//             color: #333;
+//           }
 
-          button {
-            background-color: #007bff;
-            padding: 10px 20px;
-            color: white;
-            font-weight: 500;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+//           button {
+//             background-color: #007bff;
+//             padding: 10px 20px;
+//             color: white;
+//             font-weight: 500;
+//             border: none;
+//             border-radius: 8px;
+//             cursor: pointer;
+//             font-size: 16px;
+//             transition: background-color 0.3s ease;
 
-            &:hover {
-              background-color: #0056b3;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+//             &:hover {
+//               background-color: #0056b3;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
